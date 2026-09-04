@@ -1,0 +1,18 @@
+{
+  "name": "__PROJECT_NAME__",
+  "private": true,
+  "scripts": {
+    "inspect": "mobilewright inspect",
+    "day1:04:starter": "mobilewright test exercises/day1/04-anatomy-of-a-test --grep starter",
+    "day1:05:starter": "mobilewright test exercises/day1/05-fixtures-and-deep-links --grep starter",
+    "day1:06:starter": "mobilewright test exercises/day1/06-locators-basics --grep starter",
+    "day2:09:starter": "mobilewright test exercises/day2/09-locators-refinement --grep starter",
+    "day2:15:starter": "mobilewright test exercises/day2/15-screen-object-refactor --grep starter"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3"
+  },
+  "allowScripts": {
+    "fsevents@2.3.2": true
+  }
+}

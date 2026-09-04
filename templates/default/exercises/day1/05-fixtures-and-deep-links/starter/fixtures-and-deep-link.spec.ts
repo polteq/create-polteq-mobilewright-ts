@@ -1,0 +1,24 @@
+import { test, expect } from '@mobilewright/test';
+import { registerFreshAccount } from '../../../../support/account';
+
+test.describe('fixtures and deep links', () => {
+  test('registers a fresh account and logs in', async ({ screen, device }) => {
+    // TODO: call registerFreshAccount() to get a fresh { email, password }
+
+    // TODO: open the navigation drawer (openDrawer(screen) from
+    // ../../../../support/navigation — handles an already-logged-in drawer)
+    // and tap through to Sign In (getByTestId('nav-sign-in'))
+
+    // TODO: fill in email + password and tap the login button
+
+    // TODO: assert you're on the product catalog afterwards
+  });
+
+  test('relaunches the app via its custom URL scheme', async ({ screen, device, bundleId }) => {
+    // TODO: call device.terminateApp(bundleId), then device.openUrl(...) with
+    // the app's custom scheme (exp+practice-software-testing-mobile-app://)
+    // to cold-start it again
+
+    // TODO: assert you're back on the product catalog
+  });
+});
