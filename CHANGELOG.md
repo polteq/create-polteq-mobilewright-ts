@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- The WebView bridging addendum in Module 10 (`exercises/day2/10-cross-platform-config/webview/`) is now a real attendee exercise instead of trainer-only reference material. Added `webview/starter/webview-login.spec.ts` (TODO-driven, mirrors the existing `webview/solution/`) and a `day2:10:webview:starter` script in the scaffolded `package.json`.
+
+## [1.0.2] - 2026-09-10
+
 ### Fixed
 
 - The CLI's own "Next steps" output printed `npm test` as the final command, but the scaffolded `package.json` has no `test` script, so that command failed. It now prints `npx mobilewright test tests/example.spec.ts`, the actual smoke test path documented in the README and in `exercises/day1/03-setup/README.md`.
