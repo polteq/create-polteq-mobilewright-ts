@@ -41,7 +41,7 @@ and `getValue()` only ever reads `node.value`. Use `toHaveText()` (which
 falls back through `text` → `label` → `value`) to assert on a filled text
 input instead.
 
-This round adds one more matcher to `register-via-ui.spec.ts`, confirmed
+`register-via-ui.spec.ts` also uses one more matcher, confirmed
 against `@mobilewright/core`'s own `LocatorAssertions` type rather than assumed
 from Playwright: `toBeEnabled()` on the register button right before tapping
 it. **Confirmed against a live device:** tapping "Register" does not navigate
@@ -49,7 +49,7 @@ away from the form — the success message renders as an overlay on top of the
 still-visible, still-populated form, so there's no "the form is gone" fact to
 assert here; only that the success message/text appeared.
 
-It also adds one more way to find the first name field: `getByPlaceholder()`,
+It also demonstrates one more way to find the first name field: `getByPlaceholder()`,
 alongside the `getByTestId`/`getByRole`/`getByText` trio from
 `locators.spec.ts` above. testId stays the priority pick either way —
 placeholder text is exactly the kind of copy that changes or gets translated
