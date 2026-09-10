@@ -31,7 +31,7 @@ Module 10's WebView addendum, since Toolshop has no WebView to test against.
 | 1 | 05 — Fixtures & deep links | `day1/05-fixtures-and-deep-links` | Exercise |
 | 1 | 06 — Locators, part 1 | `day1/06-locators-basics` | Exercise |
 | 2 | 09 — Locators, part 2 (Inspector, refinement, scrolling & back button) | `day2/09-locators-refinement` | Exercise |
-| 2 | 10 — Cross-platform config | `day2/10-cross-platform-config` | Reference only (includes a WebView bridging addendum, `webview/`) |
+| 2 | 10 — Cross-platform config | `day2/10-cross-platform-config` | Reference only (config) + Exercise (`webview/` bridging addendum) |
 | 2 | 12 — Custom fixture | `day2/12-custom-fixture` | Exercise |
 | 2 | 13 — Composed fixtures & options | `day2/13-composed-fixtures` | Reference only |
 | 2 | 15 — Screen Object refactor | `day2/15-screen-object-refactor` | Exercise |

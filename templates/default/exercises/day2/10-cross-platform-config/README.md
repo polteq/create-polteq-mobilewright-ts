@@ -1,8 +1,11 @@
-# Module 10 — Cross-platform config (reference only)
+# Module 10 — Cross-platform config (reference only) & WebView bridging (exercise)
 
-No exercise here — this is a trainer-demoed config change, shown here as a
-reference the root `mobilewright.config.ts` evolves toward, not something
-attendees write from scratch.
+The cross-platform config part below is reference only — a trainer-demoed
+change, shown here as the shape the root `mobilewright.config.ts` evolves
+toward, not something attendees write from scratch. The WebView bridging
+part further down (`webview/`) is a real exercise: attendees write
+`webview/starter/webview-login.spec.ts` themselves; `webview/solution/` is
+the reference answer.
 
 `solution/mobilewright.config.ts` extends the single-platform root config
 into a `projects` array so the same spec files run unchanged on both Android
@@ -17,7 +20,7 @@ end to end — `example.spec.ts` passes unchanged on both platforms. The
 `projects[].use` shape (`platform`, `bundleId`) is exactly Playwright's
 per-project `use` convention, as expected.
 
-## WebView bridging (`webview/`)
+## WebView bridging (`webview/`) — exercise
 
 **Confirmed: Toolshop has no WebView.** So this uses a second app instead —
 `playground/playground.apk` (Android) / `playground/playground.zip` (iOS
@@ -33,8 +36,8 @@ npx mobilecli apps install playground/playground.apk   # Android
 npx mobilecli apps install playground/playground.zip   # iOS Simulator
 ```
 
-`webview/solution/webview-login.spec.ts` is reference-only, same kind as the
-rest of this module. It points `test.use({ bundleId: 'com.mobilenext.playground' })`
+Attendees write `webview/starter/webview-login.spec.ts` themselves, following
+the TODOs. It points `test.use({ bundleId: 'com.mobilenext.playground' })`
 at the playground app instead of Toolshop — overriding the root config's
 default for that one file, no config changes needed — then:
 
@@ -47,6 +50,8 @@ default for that one file, no config changes needed — then:
   that hand-off with ordinary `screen.getByTestId`/`getByText`, back on
   native locators once the WebView itself is gone.
 
+`webview/solution/webview-login.spec.ts` is the reference answer.
+
 **Confirmed live** on the Android emulator: the playground app's menu
 buttons are native Android views, so their identifiers are full resource-id
 strings (`com.mobilenext.playground:id/btn_web_view`), not bare testIDs like
@@ -58,7 +63,7 @@ title "Sample Login". After submitting the form with a name, the resulting
 native screen carries a `com.mobilenext.playground:id/message` resource-id
 (a real testID, so `getByTestId` works there), reading "You have
 successfully logged in to the native app, Marco!" for whatever name was
-typed.
+typed in the reference solution — attendees will see their own name instead.
 
 ## Platform gotchas: permission dialogs & keyboard occlusion
 
