@@ -23,8 +23,9 @@ but are not present in this app's UI at all, so they're out of scope for this
 exercise. Registering through the UI does **not** auto-login: it lands on a
 success screen (`getByTestId('success-message')`, "You are registered, tap
 here to sign in.") with a link back to Sign In, rather than the product
-catalog. The login button's real testID is `login-button` (not
-`login-submit`), confirmed via live UI dump.
+catalog. The login button's testID doesn't follow the `-submit` naming pattern
+you might expect from other forms in this app — `mobilewright inspect`
+surfaces it directly, no need to guess.
 
 Both files reach Sign In/Register via `openDrawer(screen)` (from
 `support/navigation.ts`) rather than tapping `drawer-button` directly — the
