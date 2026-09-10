@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- The Module 5 starter test (`exercises/day1/05-fixtures-and-deep-links/starter/fixtures-and-deep-link.spec.ts`) told attendees to "fill in email + password and tap the login button" without naming the locators, and Module 6 (locators) and Module 9 (`mobilewright inspect`) both come later in the course, so there was no way to find them yet. The TODO now names `email-input`, `password-input`, and `login-button` directly.
+
 ## [1.0.3] - 2026-09-10
 
 ### Added
