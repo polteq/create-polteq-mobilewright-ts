@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Module 6's README (`exercises/day1/06-locators-basics/README.md`) named the login button's exact testID in prose, spoiling the "find it yourself with `mobilewright inspect`" exercise that now sits right before it. Describes the gotcha (non-obvious naming) without giving away the string.
+
+## [1.0.4] - 2026-09-10
+
+### Fixed
+
 - The Module 5 starter test (`exercises/day1/05-fixtures-and-deep-links/starter/fixtures-and-deep-link.spec.ts`) told attendees to "fill in email + password and tap the login button" without naming the locators, and Module 6 (locators) and Module 9 (`mobilewright inspect`) both come later in the course, so there was no way to find them yet. The TODO now names `email-input`, `password-input`, and `login-button` directly.
 
 ## [1.0.3] - 2026-09-10
@@ -39,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of the Polteq Mobilewright (mobile end-to-end) TypeScript scaffold CLI.
 
+[1.0.4]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.4
 [1.0.3]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.3
 [1.0.2]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.2
 [1.0.1]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.1
