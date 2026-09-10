@@ -62,7 +62,7 @@ async function main() {
   if (targetArg) console.log(`  cd ${targetArg}`);
   console.log('  npm install');
   console.log('  npx mobilewright doctor');
-  console.log('  npm test');
+  console.log('  npx mobilewright test tests/example.spec.ts');
 }
 
 main();

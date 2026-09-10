@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- The CLI's own "Next steps" output printed `npm test` as the final command, but the scaffolded `package.json` has no `test` script, so that command failed. It now prints `npx mobilewright test tests/example.spec.ts`, the actual smoke test path documented in the README and in `exercises/day1/03-setup/README.md`.
+
 ## [1.0.1] - 2026-09-04
 
 ### Fixed
