@@ -2,10 +2,11 @@
 
 ## Exercise 0: find your own locators, for once
 
-Every locator used in this course so far was already confirmed and handed to
-you (`nav-sign-in`, `login-button`, `product-title`, ...). That's fine for
-learning "which locator method to call", but it skips the actual first step
-on a real app: finding the locator yourself.
+You've used `mobilewright inspect` since Module 6, but always to confirm a
+locator for an element this course had already pointed you at
+(`nav-sign-in`, `login-button`, `product-title`, ...). That's fine for
+learning "which locator method to call", but it skips a bigger part of the
+real job: deciding for yourself which element you even need.
 
 Boot the Inspector against your running emulator/simulator with Toolshop
 open:
@@ -16,7 +17,7 @@ npx mobilewright inspect
 
 Find the locator for three elements this course hasn't touched yet:
 
-- The **Home** screen's heading (originally Favorites, swapped out — see below)
+- The **Home** screen's heading (no login required, see below)
 - The **Contact** screen's message field
 - The **Rentals** tab icon (bottom tab bar)
 
@@ -32,11 +33,10 @@ There's deliberately no `starter`/`solution` pair for this part beyond a
 bare scaffold (`starter/inspector-discovery.spec.ts`) — the whole point is
 finding these yourself, not being handed a confirmed string.
 
-**Confirmed live:** `Favorites` (the original third target here) requires a
-logged-in account, unlike everything else in this exercise, so it's swapped
-for the `Home` screen's heading to keep this a no-login exercise like the
-rest of Module 9. Optional bonus for early finishers: register + log in
-first (Module 5's helper), then find `Favorites`' locator too.
+**Confirmed live:** `Favorites` requires a logged-in account, unlike the
+three targets above, which is why it's the optional bonus below instead of
+a core target. Optional bonus for early finishers: register + log in first
+(Module 5's helper), then find `Favorites`' locator too.
 
 **Confirmed live:** the Contact message field (`message-input`, via the
 drawer's `nav-contact`) and the Rentals tab icon (`rentals-tab`, visible on
@@ -71,10 +71,9 @@ the 4 visible items: Combination Pliers, Pliers, Long Nose Pliers).
 
 ## Exercise: scrolling and the hardware back button
 
-Neither gestures nor the hardware back button appeared anywhere in this
-course before this round — a real gap for a mobile-specific framework.
-Extend the catalog exercise above with two ways to reach the same result,
-each in its own test:
+Gestures and the hardware back button are genuinely mobile-specific
+concerns worth covering directly. Extend the catalog exercise above with
+two ways to reach the same result, each in its own test:
 
 - Scroll to whichever product ends up last on your screen size with
   `locator.scrollIntoViewIfNeeded({ direction: 'up' })`, then tap it. Return
@@ -94,10 +93,9 @@ the last product on a fresh emulator without overshooting past the list.
 
 ## Demo: device orientation and a custom gesture
 
-Two more small, self-contained pieces this course hadn't touched before this
-round, kept separate from the exercises above rather than folded into them —
-run through them, but there's nothing to design or discuss here beyond the
-API itself:
+Two more small, self-contained API demos, kept separate from the exercises
+above since there's nothing to design or discuss here beyond the API
+itself:
 
 - `device.getOrientation()`/`device.setOrientation('landscape' | 'portrait')`
   — rotate the device and confirm the catalog is still readable afterwards.
