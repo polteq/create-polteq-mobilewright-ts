@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-09-10
+
 ### Fixed
 
 - Module 6's README (`exercises/day1/06-locators-basics/README.md`) named the login button's exact testID in prose, spoiling the "find it yourself with `mobilewright inspect`" exercise that now sits right before it. Describes the gotcha (non-obvious naming) without giving away the string.
 
 - Several exercise READMEs carried commentary about how the material itself was built or revised ("this round", "originally X swapped for Y", "the original target", "new exercise") instead of facts attendees or the trainer need. Also updated Module 9's opening framing to match Module 6 now teaching `mobilewright inspect` before its own exercise.
+
+- The top-level README's "Scripts in the generated project" table listed only five of the seven scripts actually in `package.json.template`, missing `day2:10:webview:starter` and `day2:12:starter`.
 
 ## [1.0.4] - 2026-09-10
 
@@ -47,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of the Polteq Mobilewright (mobile end-to-end) TypeScript scaffold CLI.
 
+[1.0.5]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.5
 [1.0.4]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.4
 [1.0.3]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.3
 [1.0.2]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.2
