@@ -10,8 +10,11 @@ test.describe('fixtures and deep links', () => {
     // and tap through to Sign In (getByTestId('nav-sign-in'))
 
     // TODO: fill in email + password and tap the login button
+    // (getByTestId('email-input'), getByTestId('password-input'),
+    // getByTestId('login-button') — Module 6 covers getByTestId() and the
+    // other locator methods in more depth, this is your first use of it)
 
-    // TODO: assert you're on the product catalog afterwards
+    // TODO: assert you're on the product catalog afterwards (getByText('Products'))
   });
 
   test('relaunches the app via its custom URL scheme', async ({ screen, device, bundleId }) => {
