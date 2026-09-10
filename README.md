@@ -67,7 +67,7 @@ my-project/
 |---|---|
 | `npm run inspect` | Open the Mobilewright inspector against a running device |
 | `npm run day1:04:starter` | Run an exercise module's starter test directly |
-| `npm run day1:05:starter`, `day1:06:starter`, `day2:09:starter`, `day2:15:starter` | Same, for the other modules with starter scripts |
+| `npm run day1:05:starter`, `day1:06:starter`, `day2:09:starter`, `day2:10:webview:starter`, `day2:12:starter`, `day2:15:starter` | Same, for the other modules with starter scripts |
 
 `mobilewright` and `@mobilewright/test` are deliberately **not** included as dependencies — attendees add them in Module 3 of the course. Any spec, including ones without an `npm run` script, can be run directly with `npx mobilewright test <path> [--grep starter|solution]`.
 
