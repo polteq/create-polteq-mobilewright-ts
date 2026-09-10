@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-09-10
+
 ### Added
 
 - The WebView bridging addendum in Module 10 (`exercises/day2/10-cross-platform-config/webview/`) is now a real attendee exercise instead of trainer-only reference material. Added `webview/starter/webview-login.spec.ts` (TODO-driven, mirrors the existing `webview/solution/`) and a `day2:10:webview:starter` script in the scaffolded `package.json`.
@@ -33,5 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of the Polteq Mobilewright (mobile end-to-end) TypeScript scaffold CLI.
 
+[1.0.3]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.3
+[1.0.2]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.2
 [1.0.1]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.1
 [1.0.0]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.0
