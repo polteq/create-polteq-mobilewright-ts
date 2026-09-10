@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The WebView bridging addendum in Module 10 (`exercises/day2/10-cross-platform-config/webview/`) is now a real attendee exercise instead of trainer-only reference material. Added `webview/starter/webview-login.spec.ts` (TODO-driven, mirrors the existing `webview/solution/`) and a `day2:10:webview:starter` script in the scaffolded `package.json`.
 
+### Fixed
+
+- `exercises/day2/12-custom-fixture` already shipped a `starter/` folder, but the scaffolded `package.json` had no matching `day2:12:starter` script. Added it.
+
 ## [1.0.2] - 2026-09-10
 
 ### Fixed
