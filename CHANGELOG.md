@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Module 6's README (`exercises/day1/06-locators-basics/README.md`) named the login button's exact testID in prose, spoiling the "find it yourself with `mobilewright inspect`" exercise that now sits right before it. Describes the gotcha (non-obvious naming) without giving away the string.
 
+- Several exercise READMEs carried commentary about how the material itself was built or revised ("this round", "originally X swapped for Y", "the original target", "new exercise") instead of facts attendees or the trainer need. Also updated Module 9's opening framing to match Module 6 now teaching `mobilewright inspect` before its own exercise.
+
 ## [1.0.4] - 2026-09-10
 
 ### Fixed
