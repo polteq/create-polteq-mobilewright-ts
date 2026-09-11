@@ -18,16 +18,16 @@ and actions written directly in the test body. Refactor it bottom-up:
    constructor is needed on `LoginScreen` itself: field initializers in a
    derived class run right after the (implicit) `super(screen)` call
    resolves, so `BaseScreen`'s constructor has already assigned `this.screen`
-   by the time these initializers run — confirmed directly (plain JS class
-   fields, not a Mobilewright-specific behavior). (This doesn't extend to
+   by the time these initializers run — this is plain JS class-field behavior,
+   not something Mobilewright does specially. (This doesn't extend to
    *parameterized* locators, e.g. a hypothetical `row(name: string)` — those
    still need to stay as methods, since a field initializer can't take a
    call-time argument; none of this screen's locators are parameterized.)
    Also add a `goto()` method that calls `openDrawer(this.screen)` (from
    `support/navigation.ts` — the app's login session survives a restart, so
    the drawer can't be assumed logged-out) then taps `nav-sign-in` — this
-   build doesn't support deep-linking to the Sign In screen (confirmed
-   live), so reaching it is itself part of the screen's responsibility.
+   build doesn't support deep-linking to the Sign In screen, so reaching it
+   is itself part of the screen's responsibility.
 2. Extract a shared `BaseScreen` under `starter/screens/base.screen.ts` that
    just holds the constructor-injected `screen` handle, so every future
    screen class can extend it instead of repeating that boilerplate.
@@ -37,8 +37,7 @@ and actions written directly in the test body. Refactor it bottom-up:
 
 `solution/` has the finished version: `screens/base.screen.ts`,
 `screens/login.screen.ts`, and the refactored `login.spec.ts`. The login
-button's real testID is `login-button` (not `login-submit`), confirmed via
-live UI dump.
+button's real testID is `login-button` (not `login-submit`).
 
 This sets up Module 16, where the fixture itself constructs the
 `LoginScreen` instead of a test doing `new LoginScreen(screen)` by hand.

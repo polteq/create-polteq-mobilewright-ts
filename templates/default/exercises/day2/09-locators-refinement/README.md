@@ -33,12 +33,12 @@ There's deliberately no `starter`/`solution` pair for this part beyond a
 bare scaffold (`starter/inspector-discovery.spec.ts`) — the whole point is
 finding these yourself, not being handed a confirmed string.
 
-**Confirmed live:** `Favorites` requires a logged-in account, unlike the
+`Favorites` requires a logged-in account, unlike the
 three targets above, which is why it's the optional bonus below instead of
 a core target. Optional bonus for early finishers: register + log in first
 (Module 5's helper), then find `Favorites`' locator too.
 
-**Confirmed live:** the Contact message field (`message-input`, via the
+The Contact message field (`message-input`, via the
 drawer's `nav-contact`) and the Rentals tab icon (`rentals-tab`, visible on
 the Home screen itself) are both reachable without logging in and do carry
 testIDs, so Inspector will find `getByTestId` locators for those two same as
@@ -60,12 +60,12 @@ matches:
 - `.count()` to assert how many matches exist.
 - `.all()` to read every match's text at once.
 
-**Confirmed against a live device:** each catalog card's outer container has
+Each catalog card's outer container has
 a *unique* testID (`product-item-1`, `product-item-2`, ...), so it can't be
 used as a group locator for filter/count/all. `product-title` is repeated
 identically across every card and is what these exercises use instead.
 Tapping a `product-title` opens the same product detail modal as tapping the
-card itself (confirmed live) — the modal exposes `product-description` and
+card itself — the modal exposes `product-description` and
 `close-button`. "Hammer" isn't present in this catalog; "Pliers" is (3 of
 the 4 visible items: Combination Pliers, Pliers, Long Nose Pliers).
 
@@ -83,12 +83,12 @@ two ways to reach the same result, each in its own test:
   `screen.pressButton('BACK')`, the Android hardware button specifically,
   instead of `goBack()`.
 
-**Confirmed live:** the hardware back button closes the product detail
+The hardware back button closes the product detail
 modal exactly the same way `close-button` does, so `goBack()`/
 `pressButton('BACK')` can both be relied on directly in this exercise, no
 fallback needed.
 
-**Confirmed live:** `screen.swipe('up', { distance: 800 })` reliably reaches
+`screen.swipe('up', { distance: 800 })` reliably reaches
 the last product on a fresh emulator without overshooting past the list.
 
 ## Demo: device orientation and a custom gesture
@@ -105,11 +105,11 @@ itself:
   gesture that `swipe()` can't express. `device-interactions.spec.ts` uses a
   single-finger path as the simplest possible demonstration of the shape.
 
-**Confirmed live:** the orientation test (starting in `'portrait'`, and the
+The orientation test (starting in `'portrait'`, and the
 catalog heading staying visible across `setOrientation()` calls) passes
 as-is.
 
-**Known issue, confirmed live — `screen.gesture()` currently fails and its
+**Known issue — `screen.gesture()` currently fails and its
 test is marked `test.fixme()`:** `@mobilewright/driver-mobilecli@0.0.55`
 (the latest published version) forwards `gesture()`'s documented
 `{ pointers: GesturePoint[][] }` shape straight through as the RPC

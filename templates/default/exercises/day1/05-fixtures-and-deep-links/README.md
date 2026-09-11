@@ -36,17 +36,17 @@ test-scoped and gets a fresh app per test. Notice that in test 2 you don't
 need to explicitly launch the app — it's already there by the time your test
 body runs.
 
-**Confirmed against a live device:** this build only registers the bare
+This build only registers the bare
 `exp+practice-software-testing-mobile-app://` scheme at the OS level —
 opening it with a sub-path like `.../SignIn` or `.../Register` is delivered
-to the app (confirmed via `adb logcat`) but never reaches the in-app router,
+to the app but never reaches the in-app router,
 so it silently leaves you on whatever screen you were already on. That rules
 out per-screen deep linking as a navigation shortcut for this app; test 3
 instead demonstrates the deep link that *does* work — cold-starting the app
 through its custom scheme — and tests 2/12/13/15/16 reach Sign In and
 Register by tapping through the navigation drawer instead.
 
-**Two more things confirmed live, both easy to trip over:**
+**Two more things worth knowing, both easy to trip over:**
 
 - `device.terminateApp()` and `device.launchApp()` both require the app's
   bundle ID as an explicit argument — it's not implied by config. Request the
