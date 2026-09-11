@@ -9,5 +9,6 @@ with the `device` fixture. No assertions beyond that one visibility check —
 this is about the *shape* of a test (`test('name', async ({ fixtures }) =>
 {...})`), not about testing anything meaningful yet.
 
-Run it with `npx mobilewright test exercises/day1/04-anatomy-of-a-test/solution`
-(or point at `starter/` once you've filled in the TODOs) and check the report.
+Run it with `npx mobilewright test exercises/day1/04-anatomy-of-a-test/starter`
+once you've filled in the TODOs, and check the report. This scaffold doesn't
+include a reference solution for this exercise.

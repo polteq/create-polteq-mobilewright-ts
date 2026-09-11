@@ -1,24 +1,24 @@
 # Module 10 — Cross-platform config (reference only), WebView bridging & GPS location mocking (exercises)
 
 The cross-platform config part below is reference only — a trainer-demoed
-change, shown here as the shape the root `mobilewright.config.ts` evolves
-toward, not something attendees write from scratch. The WebView bridging
+change from the course's own material, not included in this scaffold and
+not something attendees write from scratch. The WebView bridging
 part further down (`webview/`) and the GPS location mocking part after that
 (`location/`) are both real exercises: attendees write
 `webview/starter/webview-login.spec.ts` and `location/starter/gps-location.spec.ts`
 themselves. This scaffold ships starter files only, no solution folders —
 see the private course repo for reference answers.
 
-`solution/mobilewright.config.ts` extends the single-platform root config
-into a `projects` array so the same spec files run unchanged on both Android
-and iOS.
+The demoed config extends the single-platform root config into a
+`projects` array so the same spec files run unchanged on both Android and
+iOS.
 
-`mobilewright test -c solution/mobilewright.config.ts --list` expands
-one spec file into two entries, `[android] › ...` and `[ios] › ...`, and
-`--project android` / `--project ios` each run that same unmodified spec file
-end to end — `example.spec.ts` passes unchanged on both platforms. The
-`projects[].use` shape (`platform`, `bundleId`) is exactly Playwright's
-per-project `use` convention, as expected.
+`mobilewright test -c <that config> --list` expands one spec file into two
+entries, `[android] › ...` and `[ios] › ...`, and `--project android` /
+`--project ios` each run that same unmodified spec file end to end —
+`example.spec.ts` passes unchanged on both platforms. The `projects[].use`
+shape (`platform`, `bundleId`) is exactly Playwright's per-project `use`
+convention, as expected.
 
 ## WebView bridging (`webview/`) — exercise
 
@@ -50,7 +50,7 @@ default for that one file, no config changes needed — then:
   that hand-off with ordinary `screen.getByTestId`/`getByText`, back on
   native locators once the WebView itself is gone.
 
-`webview/solution/webview-login.spec.ts` is the reference answer.
+This scaffold doesn't include a reference solution for this exercise.
 
 On the Android emulator, the playground app's menu
 buttons are native Android views, so their identifiers are full resource-id
@@ -62,8 +62,8 @@ WebView's own URL is `https://mobilewright.dev/samples/webview/?source=webview`,
 title "Sample Login". After submitting the form with a name, the resulting
 native screen carries a `com.mobilenext.playground:id/message` resource-id
 (a real testID, so `getByTestId` works there), reading "You have
-successfully logged in to the native app, Marco!" for whatever name was
-typed in the reference solution — attendees will see their own name instead.
+successfully logged in to the native app, <name>!" for whatever name you
+filled into the form above.
 
 ## GPS location mocking (`location/`) — exercise
 

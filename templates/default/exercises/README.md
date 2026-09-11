@@ -1,14 +1,16 @@
 # Mobilewright course exercises
 
 Hands-on material for the two-day Mobilewright course, organized by module number
-from the course skeleton. Every folder that corresponds to a labelled `Exercise:`
-in the skeleton has a `starter/` (TODOs for attendees) and a `solution/` (answer
-key). Folders that correspond to trainer-demoed or fixture-evolution content have
-a `solution/` only — there's no honest "starter" version of content nobody is
-meant to write from scratch. Module 9 is a partial exception: its Inspector
-exercise has a `starter/` scaffold (`inspector-discovery.spec.ts`) but no
-`solution/`, deliberately — the correct locators depend on what each attendee's
-own Inspector session finds, not a fixed answer key.
+from the course skeleton. Every folder that corresponds to a labelled
+`Exercise:` in the skeleton has a `starter/` (TODOs for attendees) to work
+from. This public scaffold doesn't ship any `solution/` answer keys
+anywhere — check your work against the course material or ask your
+trainer. Folders that correspond to trainer-demoed or fixture-evolution
+content have no files here at all, that material is demoed live from the
+course's own private repo. Module 9's Inspector exercise has a `starter/`
+scaffold (`inspector-discovery.spec.ts`) and, like everything else here, no
+answer key either way, deliberately — the correct locators depend on what
+each attendee's own Inspector session finds, not a fixed answer.
 
 Shared helpers live in `/support` at the repo root (currently
 `account.ts`, used from Module 5 onward to register a fresh Toolshop account via
