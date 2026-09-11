@@ -14,7 +14,7 @@
     "url": "git+https://github.com/polteq/create-polteq-mobilewright-ts.git"
   },
   "name": "create-polteq-mobilewright-ts",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Scaffold a Polteq Mobilewright (mobile end-to-end) TypeScript test project.",
   "type": "module",
   "bin": {
