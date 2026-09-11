@@ -14,7 +14,7 @@ every test body.
 `solution/fixtures.ts` and `solution/login-with-fixture.spec.ts` show the
 finished version.
 
-**Confirmed against a live device:** this build doesn't support deep-linking
+This build doesn't support deep-linking
 to Sign In or Register, so `login-with-fixture.spec.ts` reaches them by
 tapping through the drawer via `openDrawer(screen)` (from
 `support/navigation.ts`) instead of `device.openUrl(...)`. The login button's

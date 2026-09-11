@@ -47,5 +47,5 @@ inspect` comment. Run `npx mobilewright inspect` against a booted emulator with
 Toolshop installed and fix any that don't match before handing material out.
 Module 9's Inspector exercise still needs that live pass (see that
 module's own README for exactly what to check) — its hardware-back-button
-line has already been confirmed live: it closes the product detail modal the
-same way close-button does.
+line already closes the product detail modal the same way close-button
+does.
