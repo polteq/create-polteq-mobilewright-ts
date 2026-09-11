@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Several exercise READMEs (Modules 4, 10, 12, 13, 15, 16), the exercises index, and the scaffold's own top-level README claimed a `solution/` answer key or a demoed file existed locally ("npm run day1:04:solution", "webview/solution/webview-login.spec.ts is the reference answer", etc.), copied verbatim from the private course repo where those files do exist. This scaffold never ships any `solution/` folders or `:solution` npm scripts. Reworded every such reference to describe what's actually here, and fixed the one broken example command (`npm run day1:04:solution`, which errors with "missing script").
+
 - Exercise READMEs used "confirmed against a live device" / "confirmed live" / "confirmed via adb logcat" phrasing throughout, describing how a fact was checked rather than the fact itself. These READMEs ship straight into every scaffolded project, so that framing has no use for attendees. Reworded to state the same facts plainly.
 
 - `exercises/README.md` carried a maintainer-only pre-class checklist paragraph ("fix any that don't match before handing material out") that shipped into every scaffolded project despite having no use for attendees. It also referenced a `// TODO before class` code-comment convention that no longer exists anywhere in the exercises. Removed.

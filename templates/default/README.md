@@ -37,18 +37,20 @@ Full step-by-step instructions live in
 | `exercises/` | Course modules, one folder per module, day1/day2 — see [`exercises/README.md`](exercises/README.md) for the full index |
 | `tests/example.spec.ts` | Module 3/4's starting smoke test — left as-is throughout the course |
 | `support/` | Shared test helpers: `account.ts` (register a Toolshop account via API) and `navigation.ts` (`openDrawer()`) |
-| `playground/playground.apk`, `playground/playground.zip` | WebView-only app used by Module 10's WebView addendum — Android APK and iOS Simulator build |
+| `playground/playground.apk`, `playground/playground.zip` | Second app used by Module 10's WebView and GPS location addenda — Android APK and iOS Simulator build |
 | `mobilewright.config.ts` | Root Mobilewright config (Android, Toolshop bundle id, HTML reporter) |
 
 ## Running exercises
 
-Each exercise module has `npm run` scripts to launch its `starter` and/or
-`solution` tests directly, e.g.:
+Each exercise module has an `npm run` script to launch its `starter` test
+directly, e.g.:
 
 ```bash
 npm run day1:04:starter
-npm run day1:04:solution
 ```
+
+This scaffold ships starter scripts only — no `solution` scripts, since no
+reference solutions are included.
 
 See `package.json` for the full list, or run any spec directly:
 

@@ -11,8 +11,8 @@ own `fixtures.ts` (`import { test, expect } from '../fixtures'`) instead of
 importing `@mobilewright/test` directly and repeating the restart logic in
 every test body.
 
-`solution/fixtures.ts` and `solution/login-with-fixture.spec.ts` show the
-finished version.
+This scaffold doesn't include a reference solution for this exercise — the
+notes below cover the two things most likely to trip you up.
 
 This build doesn't support deep-linking
 to Sign In or Register, so `login-with-fixture.spec.ts` reaches them by

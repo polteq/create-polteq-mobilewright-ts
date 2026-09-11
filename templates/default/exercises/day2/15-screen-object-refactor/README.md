@@ -35,9 +35,9 @@ and actions written directly in the test body. Refactor it bottom-up:
    `.goto()` then `.login(email, password)` instead of touching locators
    directly.
 
-`solution/` has the finished version: `screens/base.screen.ts`,
-`screens/login.screen.ts`, and the refactored `login.spec.ts`. The login
-button's real testID is `login-button` (not `login-submit`).
+This scaffold doesn't include a reference solution for this refactor — one
+thing you can't derive from the starter alone: the login button's real
+testID is `login-button` (not `login-submit`).
 
 This sets up Module 16, where the fixture itself constructs the
 `LoginScreen` instead of a test doing `new LoginScreen(screen)` by hand.

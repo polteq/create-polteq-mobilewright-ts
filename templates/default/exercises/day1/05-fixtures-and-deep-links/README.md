@@ -8,10 +8,10 @@ Three small tests across two files:
    own — see why below). Assert on text that doesn't exist on the home
    screen, run it, and look at the automatic failure screenshot in the HTML
    report. This is the whole point of the exercise — see what a failure
-   looks like before you're debugging a real one. The solution also sets
-   `test.use({ video: 'retain-on-failure' })`, so the failure gets a video
-   attached to the report too (`'retain-on-failure'` discards recordings for
-   tests that pass, so a passing run wouldn't get one).
+   looks like before you're debugging a real one. Also add
+   `test.use({ video: 'retain-on-failure' })` to this file, so the failure
+   gets a video attached to the report too (`'retain-on-failure'` discards
+   recordings for tests that pass, so a passing run wouldn't get one).
 
    **Why this test is alone in its own file, and named to run last:**
    recording starts for every test in a file once `video` is set — not just
