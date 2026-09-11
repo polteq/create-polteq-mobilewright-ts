@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- New exercise: fixtures return Screen Objects (`exercises/day2/16-fixtures-return-screen-objects/`), previously a trainer-demoed reference module. Attendees write their own `loginScreen` fixture that hands back a `LoginScreen` instance (reusing Module 15's class) instead of the raw screen, and a test that uses it with zero raw locators, combining Module 12's fixture pattern and Module 15's Screen Object pattern into one exercise. Adds `day2:16:starter` to `package.json.template` and the top-level README's scripts table.
+
 - New exercise: GPS location mocking (`exercises/day2/10-cross-platform-config/location/`), using `device.setGeolocation()`, new in `mobilewright`/`@mobilewright/test` 0.0.58. Attendees mock the playground app's location via its 'GPS Location' screen, the same app already used for the WebView exercise. Adds `day2:10:location:starter` to `package.json.template` and the top-level README's scripts table.
 
 - New exercise: soft assertions (`exercises/day1/07-soft-assertions/`), using `expect.soft()`, new in `@mobilewright/core` 0.0.58. Attendees contrast `expect.soft()` (collects every failure, keeps the test running) against a regular `expect()` (stops at the first failure) using two tests against the product catalog already familiar from Module 4. Adds `day1:07:starter` to `package.json.template` and the top-level README's scripts table.

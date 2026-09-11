@@ -11,7 +11,8 @@
     "day2:10:webview:starter": "mobilewright test exercises/day2/10-cross-platform-config/webview --grep starter",
     "day2:10:location:starter": "mobilewright test exercises/day2/10-cross-platform-config/location --grep starter",
     "day2:12:starter": "mobilewright test exercises/day2/12-custom-fixture --grep starter",
-    "day2:15:starter": "mobilewright test exercises/day2/15-screen-object-refactor --grep starter"
+    "day2:15:starter": "mobilewright test exercises/day2/15-screen-object-refactor --grep starter",
+    "day2:16:starter": "mobilewright test exercises/day2/16-fixtures-return-screen-objects --grep starter"
   },
   "devDependencies": {
     "@types/node": "^24.13.3"

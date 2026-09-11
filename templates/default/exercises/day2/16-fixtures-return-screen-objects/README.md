@@ -1,20 +1,27 @@
-# Module 16 — Fixtures return Screen Objects (reference only)
+# Module 16: Fixtures return Screen Objects
 
-No exercise here, and no files in this scaffold — the natural combination
-of Module 12's fixture pattern and Module 15's `LoginScreen` class,
-trainer-demoed from the course's own material as the "this is where it all
-comes together" moment.
+## Exercise
 
-The demoed `fixtures.ts` defines a `loginScreen` fixture that restarts the
-app and hands back a `new LoginScreen(screen)` instead of a raw `screen`
-handle, reusing the `LoginScreen` class built in Module 15 rather than
-duplicating it.
+The natural combination of Module 12's fixture pattern and Module 15's
+`LoginScreen` class: a custom fixture that hands back a Screen Object
+instead of the raw `screen`, so a test built on it never touches a raw
+locator at all.
 
-The payoff: a test with **zero** raw locators visible — everything goes
-through `loginScreen.goto()`, `loginScreen.login(...)` and
-`loginScreen.productsHeading`.
+Write your own `fixtures.ts` (`starter/fixtures.ts`) with a `loginScreen`
+fixture that restarts the app (`device.terminateApp()` + `launchApp()`,
+same as Module 12's fixture) and hands back `new LoginScreen(screen)`
+instead of the raw screen. Reuse the `LoginScreen` class you built in
+`../15-screen-object-refactor/starter/screens/login.screen.ts`, its
+`goto()` and `login()` methods are exactly what you need here.
 
-It requests the built-in `bundleId` fixture alongside `screen`/`device` to
-pass into `terminateApp()`/`launchApp()` (both require it explicitly), and
-`LoginScreen.goto()` itself calls `openDrawer(this.screen)` to reach Sign In
-safely even if a prior test left a session logged in.
+Then write `starter/login-with-screen-object.spec.ts`: a test that requests
+`loginScreen`, calls `.goto()` and `.login(email, password)`, and asserts
+`.productsHeading` is visible, all through the Screen Object, zero raw
+locators in the test itself.
+
+This scaffold doesn't include a reference solution for this exercise. Two
+things to get right, same as Module 12's fixture: `device.terminateApp()`/
+`launchApp()` both need the built-in `bundleId` fixture passed through
+explicitly, and the app's login session survives a restart, so
+`LoginScreen.goto()` reaches Sign In through the drawer rather than
+assuming a logged-out one.

@@ -39,7 +39,7 @@ neither a WebView nor any location-aware screens to test against.
 | 2 | 12 — Custom fixture | `day2/12-custom-fixture` | Exercise |
 | 2 | 13 — Composed fixtures & options | `day2/13-composed-fixtures` | Reference only |
 | 2 | 15 — Screen Object refactor | `day2/15-screen-object-refactor` | Exercise |
-| 2 | 16 — Fixtures return Screen Objects | `day2/16-fixtures-return-screen-objects` | Reference only |
+| 2 | 16 — Fixtures return Screen Objects | `day2/16-fixtures-return-screen-objects` | Exercise |
 
 Modules 11 and 17 (a short TypeScript generics callout before custom fixtures,
 and config/CI respectively) are slide-only in the skeleton — no code folder
