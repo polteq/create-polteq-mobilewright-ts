@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- The GPS location exercise's starter file and module README (`exercises/day2/10-cross-platform-config/`) described overriding the device's GPS location before opening the playground app's 'GPS Location' screen. Confirmed live: `setGeolocation()` only reliably takes effect once that screen's own location listener is already active, calling it beforehand gets silently ignored on the Android emulator. Reordered both the starter TODOs and the README's exercise description to open the screen first.
+
 - Several exercise READMEs (Modules 4, 10, 12, 13, 15, 16), the exercises index, and the scaffold's own top-level README claimed a `solution/` answer key or a demoed file existed locally ("npm run day1:04:solution", "webview/solution/webview-login.spec.ts is the reference answer", etc.), copied verbatim from the private course repo where those files do exist. This scaffold never ships any `solution/` folders or `:solution` npm scripts. Reworded every such reference to describe what's actually here, and fixed the one broken example command (`npm run day1:04:solution`, which errors with "missing script").
 
 - Exercise READMEs used "confirmed against a live device" / "confirmed live" / "confirmed via adb logcat" phrasing throughout, describing how a fact was checked rather than the fact itself. These READMEs ship straight into every scaffolded project, so that framing has no use for attendees. Reworded to state the same facts plainly.
