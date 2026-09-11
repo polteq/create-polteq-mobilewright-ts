@@ -40,12 +40,3 @@ Module 10's WebView addendum, since Toolshop has no WebView to test against.
 Modules 7, 11, and 17 (assertions, a short TypeScript generics callout before
 custom fixtures, and config/CI respectively) are slide-only in the skeleton —
 no code folder here, since they don't correspond to a standalone exercise.
-
-Several `getByTestId(...)` calls in these exercises are best guesses at Toolshop's
-real test IDs, marked with a `// TODO before class: confirm via mobilewright
-inspect` comment. Run `npx mobilewright inspect` against a booted emulator with
-Toolshop installed and fix any that don't match before handing material out.
-Module 9's Inspector exercise still needs that live pass (see that
-module's own README for exactly what to check) — its hardware-back-button
-line already closes the product detail modal the same way close-button
-does.
