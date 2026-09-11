@@ -77,16 +77,19 @@ following the TODOs. It reuses the same
 `test.use({ bundleId: 'com.mobilenext.playground' })` override as the
 WebView exercise, then:
 
-- Overrides the device's GPS location with
-  `device.setGeolocation({ latitude, longitude })` before opening the
-  screen — new in `mobilewright`/`@mobilewright/test` 0.0.58, the same idea
-  as Playwright's own `setGeolocation()`.
-- Opens the **GPS Location** row from the Home menu. Same kind of native
-  list as **Web View** above, so `getByTestId()` likely won't match here
-  either, find the real locator with `mobilewright inspect`.
-- Asserts the screen reflects the coordinates just set, then clears the
-  override with `device.setGeolocation(null)` and asserts it goes back to
-  the emulator's default location.
+- Opens the **GPS Location** row from the Home menu first (same kind of
+  native list as **Web View** above, so `getByText('GPS Location')` is more
+  reliable here than `getByTestId()` on the row itself).
+- Only then overrides the device's GPS location with
+  `device.setGeolocation({ latitude, longitude })`, new in
+  `mobilewright`/`@mobilewright/test` 0.0.58, the same idea as Playwright's
+  own `setGeolocation()`. Confirmed live: calling this before opening the
+  screen gets silently ignored on the Android emulator, the screen's own
+  location listener needs to already be active first.
+- Asserts the screen reflects the coordinates just set, find the real
+  locator with `mobilewright inspect`, then clears the override with
+  `device.setGeolocation(null)` and asserts it goes back to the emulator's
+  own default location (not a "no override" message).
 
 ## Platform gotchas: permission dialogs & keyboard occlusion
 
