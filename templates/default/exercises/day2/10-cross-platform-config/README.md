@@ -1,11 +1,13 @@
-# Module 10 — Cross-platform config (reference only) & WebView bridging (exercise)
+# Module 10 — Cross-platform config (reference only), WebView bridging & GPS location mocking (exercises)
 
 The cross-platform config part below is reference only — a trainer-demoed
 change, shown here as the shape the root `mobilewright.config.ts` evolves
 toward, not something attendees write from scratch. The WebView bridging
-part further down (`webview/`) is a real exercise: attendees write
-`webview/starter/webview-login.spec.ts` themselves; `webview/solution/` is
-the reference answer.
+part further down (`webview/`) and the GPS location mocking part after that
+(`location/`) are both real exercises: attendees write
+`webview/starter/webview-login.spec.ts` and `location/starter/gps-location.spec.ts`
+themselves. This scaffold ships starter files only, no solution folders —
+see the private course repo for reference answers.
 
 `solution/mobilewright.config.ts` extends the single-platform root config
 into a `projects` array so the same spec files run unchanged on both Android
@@ -62,6 +64,29 @@ native screen carries a `com.mobilenext.playground:id/message` resource-id
 (a real testID, so `getByTestId` works there), reading "You have
 successfully logged in to the native app, Marco!" for whatever name was
 typed in the reference solution — attendees will see their own name instead.
+
+## GPS location mocking (`location/`) — exercise
+
+The playground app (`com.mobilenext.playground`, the same one used for the
+WebView exercise above) also has its own **GPS Location** row in its Home
+menu — already installed if you did the WebView exercise above, no separate
+install step needed.
+
+Attendees write `location/starter/gps-location.spec.ts` themselves,
+following the TODOs. It reuses the same
+`test.use({ bundleId: 'com.mobilenext.playground' })` override as the
+WebView exercise, then:
+
+- Overrides the device's GPS location with
+  `device.setGeolocation({ latitude, longitude })` before opening the
+  screen — new in `mobilewright`/`@mobilewright/test` 0.0.58, the same idea
+  as Playwright's own `setGeolocation()`.
+- Opens the **GPS Location** row from the Home menu. Same kind of native
+  list as **Web View** above, so `getByTestId()` likely won't match here
+  either, find the real locator with `mobilewright inspect`.
+- Asserts the screen reflects the coordinates just set, then clears the
+  override with `device.setGeolocation(null)` and asserts it goes back to
+  the emulator's default location.
 
 ## Platform gotchas: permission dialogs & keyboard occlusion
 
