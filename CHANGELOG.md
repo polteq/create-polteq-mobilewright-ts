@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New exercise: GPS location mocking (`exercises/day2/10-cross-platform-config/location/`), using `device.setGeolocation()`, new in `mobilewright`/`@mobilewright/test` 0.0.58. Attendees mock the playground app's location via its 'GPS Location' screen, the same app already used for the WebView exercise. Adds `day2:10:location:starter` to `package.json.template` and the top-level README's scripts table.
+
 ### Fixed
 
 - Exercise READMEs used "confirmed against a live device" / "confirmed live" / "confirmed via adb logcat" phrasing throughout, describing how a fact was checked rather than the fact itself. These READMEs ship straight into every scaffolded project, so that framing has no use for attendees. Reworded to state the same facts plainly.

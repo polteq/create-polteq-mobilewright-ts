@@ -8,6 +8,7 @@
     "day1:06:starter": "mobilewright test exercises/day1/06-locators-basics --grep starter",
     "day2:09:starter": "mobilewright test exercises/day2/09-locators-refinement --grep starter",
     "day2:10:webview:starter": "mobilewright test exercises/day2/10-cross-platform-config/webview --grep starter",
+    "day2:10:location:starter": "mobilewright test exercises/day2/10-cross-platform-config/location --grep starter",
     "day2:12:starter": "mobilewright test exercises/day2/12-custom-fixture --grep starter",
     "day2:15:starter": "mobilewright test exercises/day2/15-screen-object-refactor --grep starter"
   },
