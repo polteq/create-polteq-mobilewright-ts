@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Exercise READMEs used "confirmed against a live device" / "confirmed live" / "confirmed via adb logcat" phrasing throughout, describing how a fact was checked rather than the fact itself. These READMEs ship straight into every scaffolded project, so that framing has no use for attendees. Reworded to state the same facts plainly.
 
+- `exercises/README.md` carried a maintainer-only pre-class checklist paragraph ("fix any that don't match before handing material out") that shipped into every scaffolded project despite having no use for attendees. It also referenced a `// TODO before class` code-comment convention that no longer exists anywhere in the exercises. Removed.
+
 ## [1.0.5] - 2026-09-10
 
 ### Fixed
