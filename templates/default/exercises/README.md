@@ -33,6 +33,7 @@ neither a WebView nor any location-aware screens to test against.
 | 1 | 04 — Anatomy of a test | `day1/04-anatomy-of-a-test` | Exercise |
 | 1 | 05 — Fixtures & deep links | `day1/05-fixtures-and-deep-links` | Exercise |
 | 1 | 06 — Locators, part 1 | `day1/06-locators-basics` | Exercise |
+| 1 | 07 — Soft assertions | `day1/07-soft-assertions` | Exercise |
 | 2 | 09 — Locators, part 2 (Inspector, refinement, scrolling & back button) | `day2/09-locators-refinement` | Exercise |
 | 2 | 10 — Cross-platform config | `day2/10-cross-platform-config` | Reference only (config) + Exercise (`webview/` bridging + `location/` GPS mocking addenda) |
 | 2 | 12 — Custom fixture | `day2/12-custom-fixture` | Exercise |
@@ -40,6 +41,6 @@ neither a WebView nor any location-aware screens to test against.
 | 2 | 15 — Screen Object refactor | `day2/15-screen-object-refactor` | Exercise |
 | 2 | 16 — Fixtures return Screen Objects | `day2/16-fixtures-return-screen-objects` | Reference only |
 
-Modules 7, 11, and 17 (assertions, a short TypeScript generics callout before
-custom fixtures, and config/CI respectively) are slide-only in the skeleton —
-no code folder here, since they don't correspond to a standalone exercise.
+Modules 11 and 17 (a short TypeScript generics callout before custom fixtures,
+and config/CI respectively) are slide-only in the skeleton — no code folder
+here, since they don't correspond to a standalone exercise.

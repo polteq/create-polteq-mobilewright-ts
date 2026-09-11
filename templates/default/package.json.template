@@ -6,6 +6,7 @@
     "day1:04:starter": "mobilewright test exercises/day1/04-anatomy-of-a-test --grep starter",
     "day1:05:starter": "mobilewright test exercises/day1/05-fixtures-and-deep-links --grep starter",
     "day1:06:starter": "mobilewright test exercises/day1/06-locators-basics --grep starter",
+    "day1:07:starter": "mobilewright test exercises/day1/07-soft-assertions --grep starter",
     "day2:09:starter": "mobilewright test exercises/day2/09-locators-refinement --grep starter",
     "day2:10:webview:starter": "mobilewright test exercises/day2/10-cross-platform-config/webview --grep starter",
     "day2:10:location:starter": "mobilewright test exercises/day2/10-cross-platform-config/location --grep starter",
