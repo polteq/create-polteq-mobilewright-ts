@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.10] - 2026-09-11
+
 ### Added
 
 - New exercise: fixtures return Screen Objects (`exercises/day2/16-fixtures-return-screen-objects/`), previously a trainer-demoed reference module. Attendees write their own `loginScreen` fixture that hands back a `LoginScreen` instance (reusing Module 15's class) instead of the raw screen, and a test that uses it with zero raw locators, combining Module 12's fixture pattern and Module 15's Screen Object pattern into one exercise. Adds `day2:16:starter` to `package.json.template` and the top-level README's scripts table.
@@ -69,6 +71,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of the Polteq Mobilewright (mobile end-to-end) TypeScript scaffold CLI.
 
+[1.0.10]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.10
 [1.0.5]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.5
 [1.0.4]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.4
 [1.0.3]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.3
