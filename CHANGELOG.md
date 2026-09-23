@@ -7,23 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.12] - 2026-09-23
+
+### Fixed
+
+- The soft assertions exercise (`exercises/day1/07-soft-assertions/`) README and starter file described `count()` as a separate, step-less check in the Playwright report, and hinted at using `.count()` for the deliberately-wrong assertion. Both the README explanation and the starter's TODO comment now match the actual report output (all three `expect.soft()` checks show up as their own step) and the actual assertion shape (`toHaveCount(0)`).
+
+## [1.0.11] - 2026-09-11
+
+No functional changes. Version bump only; package contents identical to 1.0.10.
+
 ## [1.0.10] - 2026-09-11
-
-### Added
-
-- New exercise: fixtures return Screen Objects (`exercises/day2/16-fixtures-return-screen-objects/`), previously a trainer-demoed reference module. Attendees write their own `loginScreen` fixture that hands back a `LoginScreen` instance (reusing Module 15's class) instead of the raw screen, and a test that uses it with zero raw locators, combining Module 12's fixture pattern and Module 15's Screen Object pattern into one exercise. Adds `day2:16:starter` to `package.json.template` and the top-level README's scripts table.
-
-- New exercise: GPS location mocking (`exercises/day2/10-cross-platform-config/location/`), using `device.setGeolocation()`, new in `mobilewright`/`@mobilewright/test` 0.0.58. Attendees mock the playground app's location via its 'GPS Location' screen, the same app already used for the WebView exercise. Adds `day2:10:location:starter` to `package.json.template` and the top-level README's scripts table.
-
-- New exercise: soft assertions (`exercises/day1/07-soft-assertions/`), using `expect.soft()`, new in `@mobilewright/core` 0.0.58. Attendees contrast `expect.soft()` (collects every failure, keeps the test running) against a regular `expect()` (stops at the first failure) using two tests against the product catalog already familiar from Module 4. Adds `day1:07:starter` to `package.json.template` and the top-level README's scripts table.
 
 ### Fixed
 
 - The GPS location exercise's starter file and module README (`exercises/day2/10-cross-platform-config/`) described overriding the device's GPS location before opening the playground app's 'GPS Location' screen. Confirmed live: `setGeolocation()` only reliably takes effect once that screen's own location listener is already active, calling it beforehand gets silently ignored on the Android emulator. Reordered both the starter TODOs and the README's exercise description to open the screen first.
 
+## [1.0.9] - 2026-09-11
+
+### Changed
+
+- `mobilewright.config.ts` template's `reporter` option now configures both `'html'` and `'list'` formats (`[['html'],['list']]`) instead of `'html'` alone.
+
+## [1.0.8] - 2026-09-11
+
+### Added
+
+- New exercise: fixtures return Screen Objects (`exercises/day2/16-fixtures-return-screen-objects/`), previously a trainer-demoed reference module. Attendees write their own `loginScreen` fixture that hands back a `LoginScreen` instance (reusing Module 15's class) instead of the raw screen, and a test that uses it with zero raw locators, combining Module 12's fixture pattern and Module 15's Screen Object pattern into one exercise. Adds `day2:16:starter` to `package.json.template` and the top-level README's scripts table.
+
+## [1.0.7] - 2026-09-11
+
+### Added
+
+- New exercise: GPS location mocking (`exercises/day2/10-cross-platform-config/location/`), using `device.setGeolocation()`, new in `mobilewright`/`@mobilewright/test` 0.0.58. Attendees mock the playground app's location via its 'GPS Location' screen, the same app already used for the WebView exercise. Adds `day2:10:location:starter` to `package.json.template` and the top-level README's scripts table. Also mentions `getByRole` webview options in Module 10's README.
+
+- New exercise: soft assertions (`exercises/day1/07-soft-assertions/`), using `expect.soft()`, new in `@mobilewright/core` 0.0.58. Attendees contrast `expect.soft()` (collects every failure, keeps the test running) against a regular `expect()` (stops at the first failure) using two tests against the product catalog already familiar from Module 4. Adds `day1:07:starter` to `package.json.template` and the top-level README's scripts table.
+
+### Fixed
+
 - Several exercise READMEs (Modules 4, 10, 12, 13, 15, 16), the exercises index, and the scaffold's own top-level README claimed a `solution/` answer key or a demoed file existed locally ("npm run day1:04:solution", "webview/solution/webview-login.spec.ts is the reference answer", etc.), copied verbatim from the private course repo where those files do exist. This scaffold never ships any `solution/` folders or `:solution` npm scripts. Reworded every such reference to describe what's actually here, and fixed the one broken example command (`npm run day1:04:solution`, which errors with "missing script").
 
-- Exercise READMEs used "confirmed against a live device" / "confirmed live" / "confirmed via adb logcat" phrasing throughout, describing how a fact was checked rather than the fact itself. These READMEs ship straight into every scaffolded project, so that framing has no use for attendees. Reworded to state the same facts plainly.
+- The soft assertions exercise README (`exercises/day1/07-soft-assertions/`) was made more precise about the `expect.soft()` report output, after live emulator verification.
+
+## [1.0.6] - 2026-09-11
+
+### Fixed
+
+- Exercise READMEs used "confirmed against a live device" / "confirmed live" / "confirmed via adb logcat" phrasing throughout, describing how a fact was checked rather than the fact itself. These READMEs ship straight into every scaffolded project, so that framing has no use for attendees. Reworded to state the same facts plainly, across the top-level exercises README and Modules 5, 6, 9, 10, and 12.
 
 - `exercises/README.md` carried a maintainer-only pre-class checklist paragraph ("fix any that don't match before handing material out") that shipped into every scaffolded project despite having no use for attendees. It also referenced a `// TODO before class` code-comment convention that no longer exists anywhere in the exercises. Removed.
 
@@ -71,7 +101,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of the Polteq Mobilewright (mobile end-to-end) TypeScript scaffold CLI.
 
+[1.0.12]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.12
+[1.0.11]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.11
 [1.0.10]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.10
+[1.0.9]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.9
+[1.0.8]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.8
+[1.0.7]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.7
+[1.0.6]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.6
 [1.0.5]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.5
 [1.0.4]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.4
 [1.0.3]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.3
