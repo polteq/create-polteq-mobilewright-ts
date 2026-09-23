@@ -11,11 +11,9 @@ already used since Module 4 and Module 6.
    three checks with `expect.soft()` against the catalog: the "Products"
    heading is visible, at least one product title is visible, and one
    deliberately wrong check (there are zero products). A fourth, regular
-   assertion follows the wrong one. Run it and read the report: the two
-   locator-based checks each show up as their own step, the plain
-   count() check doesn't get one, but the failure summary at the end
-   lists all three, plus the regular assertion that follows them. The
-   test still ran to the end.
+   assertion follows the wrong one. Run it and read the report: all three
+   checks show up as their own step, plus the regular assertion that
+   follows them. The test still ran to the end.
 
 2. **`a regular expect() stops the test at the first failure`**: the same
    deliberately wrong check, but with a regular `expect()` instead of
