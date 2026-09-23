@@ -9,8 +9,8 @@ test.describe('soft vs. regular assertions', () => {
     // expect.soft() — screen.getByTestId('product-title').first()
 
     // TODO: deliberately assert something you know is wrong, still with
-    // expect.soft() — for example that there are zero products
-    // (screen.getByTestId('product-title').count())
+    // expect.soft(), for example that there are zero products
+    // (screen.getByTestId('product-title'), toHaveCount(0))
 
     // TODO: assert the product description is NOT visible on this screen
     // (it only appears after tapping into a product) — even after the
