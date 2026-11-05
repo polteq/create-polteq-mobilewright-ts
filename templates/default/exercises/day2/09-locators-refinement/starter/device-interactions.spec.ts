@@ -5,24 +5,21 @@ test.describe('device orientation and a custom gesture', () => {
     // TODO: assert device.getOrientation() starts out 'portrait'
 
     // TODO: device.setOrientation('landscape'), then assert getOrientation()
-    // is now 'landscape' and the catalog heading is still visible
+    // is now 'landscape' and the home screen is still visible
 
     // TODO: set it back to 'portrait' and assert that too
   });
 
-  test('performs a custom gesture to scroll the catalog', async ({ screen }) => {
-    // Known issue, confirmed live — leave this test.fixme() in place:
-    // @mobilewright/driver-mobilecli@0.0.55 (latest) sends screen.gesture()'s
-    // { pointers: GesturePoint[][] } straight through as the RPC
-    // device.io.gesture call's `actions` field; the installed mobilecli
-    // 1.0.7 binary (also latest) rejects that shape server-side, with a Go
-    // unmarshal error expecting a flat TapAction[] instead.
-    test.fixme(true, 'screen.gesture() RPC shape mismatch: driver-mobilecli@0.0.55 vs mobilecli@1.0.7 (device.io.gesture expects flat TapAction[], not GesturePoint[][])');
-
+  test('performs a custom gesture to scroll the catalog', async ({ screen, device }) => {
     // TODO: call screen.gesture({ pointers: [[...]] }) with a single-finger
     // path (an array of { x, y, time } points) that drags from near the
-    // bottom of the screen to near the top, instead of using swipe()
+    // bottom of the screen to near the top, instead of using swipe().
+    // Compute the points from await device.screenSize() (Android reports
+    // pixels, iOS points), e.g. x = width / 2, y from height * 0.7 to * 0.3.
+    // One finger only: a second path in `pointers` (pinch-zoom and other
+    // multi-touch gestures) throws on this driver.
 
-    // TODO: assert a product-title locator is visible afterwards
+    // TODO: assert a product price (screen.getByText(/^€\s?\d/).first()) is
+    // visible afterwards
   });
 });

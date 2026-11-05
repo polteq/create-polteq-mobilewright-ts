@@ -4,17 +4,19 @@ Hands-on material for the two-day Polteq Mobilewright course: writing mobile
 end-to-end tests with [Mobilewright](https://mobilewright.dev/docs/) against a
 real Android app running on a real (or emulated) device.
 
-The app under test is the [Practice Software Testing / Toolshop](https://practicesoftwaretesting.com/)
-demo app (bundle id `io.testsmith.practicesoftwaretesting`), plus a small
-WebView-only playground app (Android and iOS Simulator builds) used for one
-addendum.
+The app under test is the Polteq Gadget Shop mobile app (bundle id
+`com.polteq.gadgetshop.mobile`, same on Android and iOS), a React Native shop
+app that talks to the public Gadget Shop server
+(<https://gadget-shop.polteq-testing.com/>). Its Help, Terms and Privacy
+pages are the shop's website shown in a WebView, which the WebView exercise uses.
 
 ## Prerequisites
 
 - Node.js 24+
 - Android SDK with an emulator (AVD) or a connected physical device, with
   `adb` on your `PATH`
-- The Toolshop APK for your platform (provided separately by the trainer)
+- The Gadget Shop app for your platform: `gadgetshop.apk` (Android) or `gadgetshop.zip` (iOS Simulator). Download it into `gadgetshop/` as described in [`gadgetshop/README.md`](gadgetshop/README.md): the APK from https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.apk, the iOS Simulator build from https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.zip.
+  The APK is a debuggable course build (needed for WebView bridging and rotation). Its first start after install or terminate can take 20+ seconds, so the exercises use long timeouts on the first assertion.
 
 ## Setup
 
@@ -22,7 +24,7 @@ addendum.
 npm install
 npx mobilewright doctor          # checks Node, Android SDK, emulator/device
 npx mobilecli devices            # confirms a device is available
-npx mobilecli apps install <path-to-toolshop.apk>
+npx mobilecli apps install gadgetshop/gadgetshop.apk
 npx mobilewright test tests/example.spec.ts
 npx mobilewright show-report
 ```
@@ -36,9 +38,36 @@ Full step-by-step instructions live in
 |---|---|
 | `exercises/` | Course modules, one folder per module, day1/day2 — see [`exercises/README.md`](exercises/README.md) for the full index |
 | `tests/example.spec.ts` | Module 3/4's starting smoke test — left as-is throughout the course |
-| `support/` | Shared test helpers: `account.ts` (register a Toolshop account via API) and `navigation.ts` (`openDrawer()`) |
-| `playground/playground.apk`, `playground/playground.zip` | Second app used by Module 10's WebView and GPS location addenda — Android APK and iOS Simulator build |
-| `mobilewright.config.ts` | Root Mobilewright config (Android, Toolshop bundle id, HTML reporter) |
+| `support/` | Shared test helpers: `account.ts` (register a Gadget Shop account via the mobile API) and `navigation.ts` (`openAccountAsGuest()`) |
+| `gadgetshop/` | Where the Gadget Shop app goes once you've downloaded it (Android APK, iOS Simulator build) |
+| `mobilewright.config.ts` | Root Mobilewright config (Android, Gadget Shop bundle id, HTML reporter) |
+
+## Running on the iOS Simulator
+
+Everything runs on Android by default. For iOS, boot **one** simulator
+(an iPhone 17 Pro on iOS 26.5 is what the exercises were verified on), install
+`gadgetshop/gadgetshop.zip` and set `PLATFORM=ios`:
+
+```bash
+unzip gadgetshop/gadgetshop.zip -d /tmp/gadgetshop-ios
+xcrun simctl install booted /tmp/gadgetshop-ios/GadgetShopMobile.app
+npx mobilecli agent install --device <simulator id>   # once per simulator
+PLATFORM=ios npx mobilewright test tests/example.spec.ts
+```
+
+`npx mobilecli devices` lists the simulator id. Without the agent every test
+fails with `Command failed: ... agent status`; `npx mobilecli agent status
+--device <simulator id>` shows whether it is installed.
+
+Things that differ on iOS, and are handled by the helpers in
+`support/navigation.ts`: the "Open in GadgetShopMobile?" dialog after a deep
+link (`confirmOpenInApp`), the "Save Password?" sheet after login and register
+(`dismissSavePasswordPrompt`), the native back button (`goBack`), reading what
+was typed into a field (`typedText`) and finding the WebView (`appWebView`).
+Turn off **Settings > Passwords > Password Options > Suggest Strong Passwords**
+on the simulator, and reset leftover login sessions with
+`xcrun simctl keychain booted reset`. The one Android-only exercise is the
+hardware back button (`pressButton('BACK')`), which is skipped on iOS.
 
 ## Running exercises
 

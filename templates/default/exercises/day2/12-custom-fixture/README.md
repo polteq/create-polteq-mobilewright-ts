@@ -12,18 +12,15 @@ importing `@mobilewright/test` directly and repeating the restart logic in
 every test body.
 
 This scaffold doesn't include a reference solution for this exercise — the
-notes below cover the two things most likely to trip you up.
+notes below cover the things most likely to trip you up.
 
-This build doesn't support deep-linking
-to Sign In or Register, so `login-with-fixture.spec.ts` reaches them by
-tapping through the drawer via `openDrawer(screen)` (from
-`support/navigation.ts`) instead of `device.openUrl(...)`. The login button's
-real testID is `login-button` (not `login-submit`).
+`login-with-fixture.spec.ts` reaches Log in and Register through the Account
+tab via `openAccountAsGuest(screen)` (from `support/navigation.ts`).
 
 Two things your `fixtures.ts` needs to get right: `device.terminateApp()` and
 `device.launchApp()` both require the app's bundle ID as an explicit
 argument — request the built-in `bundleId` fixture alongside `screen`/
 `device` and pass it through. And the app's login session survives that
-restart (no data-clear call exists in the Device API), so anything that
-reaches Sign In/Register afterwards should go through `openDrawer(screen)`
-rather than assuming a logged-out drawer.
+restart (`terminateApp()` + `launchApp()` don't clear app data), so anything that
+reaches Sign In/Register afterwards should go through `openAccountAsGuest(screen)`
+rather than assuming a logged-out Account tab.

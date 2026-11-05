@@ -1,6 +1,6 @@
 import { test, expect } from '@mobilewright/test';
 import { registerFreshAccount } from '../../../../support/account';
-import { openDrawer } from '../../../../support/navigation';
+import { dismissSavePasswordPrompt, openAccountAsGuest, swipePastKeyboard } from '../../../../support/navigation';
 
 // TODO: this test still has locators and actions written directly in the
 // body. Refactor it to use a LoginScreen class instead — see
@@ -8,11 +8,13 @@ import { openDrawer } from '../../../../support/navigation';
 test('registers a fresh account and logs in', async ({ screen }) => {
   const { email, password } = await registerFreshAccount();
 
-  await openDrawer(screen);
-  await screen.getByTestId('nav-sign-in').tap();
-  await screen.getByTestId('email-input').fill(email);
-  await screen.getByTestId('password-input').fill(password);
-  await screen.getByTestId('login-button').tap();
+  await openAccountAsGuest(screen);
+  await screen.getByTestId('account-guest-login-button').tap();
+  await screen.getByTestId('login-email-input').fill(email);
+  await screen.getByTestId('login-password-input').fill(password);
+  await swipePastKeyboard(screen);
+  await screen.getByTestId('login-submit-button').tap();
+  await dismissSavePasswordPrompt(screen);
 
-  await expect(screen.getByText('Products')).toBeVisible();
+  await expect(screen.getByTestId('account-summary-email')).toHaveText(email);
 });

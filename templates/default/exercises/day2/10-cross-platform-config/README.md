@@ -1,176 +1,88 @@
-# Module 10 — Cross-platform config (reference only), WebView bridging & GPS location mocking (exercises)
+# Module 10 — Cross-platform config (reference only) & WebView bridging (exercise)
 
 The cross-platform config part below is reference only — a trainer-demoed
 change from the course's own material, not included in this scaffold and
-not something attendees write from scratch. The WebView bridging
-part further down (`webview/`) and the GPS location mocking part after that
-(`location/`) are both real exercises: attendees write
-`webview/starter/webview-login.spec.ts` and `location/starter/gps-location.spec.ts`
-themselves. This scaffold ships starter files only, no solution folders —
-see the private course repo for reference answers.
+not something attendees write from scratch. The WebView bridging part
+(`webview/`) is a real exercise: attendees write
+`webview/starter/webview-help.spec.ts` themselves. This scaffold ships
+starter files only, no solution folders.
 
-The demoed config extends the single-platform root config into a
-`projects` array so the same spec files run unchanged on both Android and
-iOS.
+The demoed config extends the single-platform root config
+into a `projects` array so the same spec files run unchanged on both Android
+and iOS. Gadget Shop uses the same bundle id, `com.polteq.gadgetshop.mobile`,
+on both platforms, so both projects only differ in `platform`.
 
-`mobilewright test -c <that config> --list` expands one spec file into two
-entries, `[android] › ...` and `[ios] › ...`, and `--project android` /
-`--project ios` each run that same unmodified spec file end to end —
-`example.spec.ts` passes unchanged on both platforms. The `projects[].use`
-shape (`platform`, `bundleId`) is exactly Playwright's per-project `use`
-convention, as expected.
+`mobilewright test -c <that config> --list` expands
+one spec file into two entries, `[android] › ...` and `[ios] › ...`, and
+`--project android` / `--project ios` each run that same unmodified spec file.
+The `projects[].use` shape (`platform`, `bundleId`) is exactly Playwright's
+per-project `use` convention.
 
 ## WebView bridging (`webview/`) — exercise
 
-**Toolshop has no WebView.** So this uses a second app instead —
-`playground/playground.apk` (Android) / `playground/playground.zip` (iOS
-Simulator) at the repo root, the mobile-next playground app (bundle id
-`com.mobilenext.playground` — the same value on both
-platforms, unlike Toolshop), which is debuggable and does bundle a real
-WebView screen.
+The shop's Help, Terms and Privacy pages are its website shown inside the app
+in a WebView (the URL carries `?embedded=1`, which hides the site's own
+header and footer). Open one from the **Service** tab:
+`tab-service-button`, then `service-help-button`. The native screen is
+`webpage-screen`; the web content inside is a normal web page with
+`data-testid` attributes.
 
-Setup (once per machine, same pattern as Module 3):
+Bridge from native to web with:
 
+```ts
+const page = await screen.getByWebView({ testId: 'webpage-webview' }).page();
 ```
-npx mobilecli apps install playground/playground.apk   # Android
-npx mobilecli apps install playground/playground.zip   # iOS Simulator
-```
 
-Attendees write `webview/starter/webview-login.spec.ts` themselves, following
-the TODOs. It points `test.use({ bundleId: 'com.mobilenext.playground' })`
-at the playground app instead of Toolshop — overriding the root config's
-default for that one file, no config changes needed — then:
+On iOS the testId sits on a wrapper node, not on the WebView itself, so
+`getByWebView({ testId })` matches nothing there; the page has a single
+WebView and `screen.getByWebView()` finds it. `appWebView(screen)` in
+`support/navigation.ts` does the right thing per platform.
 
-- Taps into the app's **Web View** menu entry and gets a Playwright-like
-  `Page` back from `screen.getByWebView().page()`, asserting against its DOM
-  with the same `getByRole`/`locator` calls as regular Playwright.
-- Fills and submits the WebView's login form, which redirects through a
-  custom `playground://` URL scheme. The native app intercepts that and
-  shows a real native "Login Successful" screen — the exercise asserts on
-  that hand-off with ordinary `screen.getByTestId`/`getByText`, back on
-  native locators once the WebView itself is gone.
+`page` is a Playwright-like Page. `page()` does not wait, so first wait for
+`webpage-screen` to be visible. Bridging needs a debuggable app: use the APK
+in `gadgetshop/`, not the plain release build, which fails with
+`webview injection requires a debug build`. A debuggable build starts
+slowly, so give the first `home-screen` assertion a long timeout
+(`{ timeout: 60_000 }`). The exercise has two tests:
 
-This scaffold doesn't include a reference solution for this exercise.
+1. Read the page: its URL contains `/help`, the "Help & FAQ" heading and the
+   shipping FAQ title are visible.
+2. Expand the shipping FAQ with a web `click()` and read its answer. Then
+   open the "How do I contact support?" FAQ and click its **Contact us**
+   link. The app recognises links to its own screens and opens the native
+   Contact screen instead, so the WebView is gone: assert on `screen`
+   (native locators), not on `page`.
 
-On the Android emulator, the playground app's menu
-buttons are native Android views, so their identifiers are full resource-id
-strings (`com.mobilenext.playground:id/btn_web_view`), not bare testIDs like
-Toolshop's — `getByTestId('btn_web_view')` does **not** match (the query
-engine requires an exact string match against `identifier`/`resourceId`,
-no prefix stripping), so the spec uses `getByText('Web View')` instead. The
-WebView's own URL is `https://mobilewright.dev/samples/webview/?source=webview`,
-title "Sample Login". After submitting the form with a name, the resulting
-native screen carries a `com.mobilenext.playground:id/message` resource-id
-(a real testID, so `getByTestId` works there), reading "You have
-successfully logged in to the native app, <name>!" for whatever name you
-filled into the form above.
+`page.locator()`/`page.getByRole()` return a `WebLocator` at runtime, but
+`@mobilewright/core` types them as Playwright's `Locator`. If TypeScript says
+`toBeVisible()` doesn't exist, cast to `WebLocator`.
 
-## GPS location mocking (`location/`) — exercise
+## Platform gotchas: keyboard occlusion
 
-The playground app (`com.mobilenext.playground`, the same one used for the
-WebView exercise above) also has its own **GPS Location** row in its Home
-menu — already installed if you did the WebView exercise above, no separate
-install step needed.
+On iOS the on-screen keyboard can cover a field or button your test wants to
+tap next. On Android the keyboard is not part of the accessibility tree, so
+a tap can land on the keyboard instead of the element below it. Dismiss the
+keyboard (or scroll the element into view) before the next tap, especially at
+the end of long forms such as checkout.
 
-Attendees write `location/starter/gps-location.spec.ts` themselves,
-following the TODOs. It reuses the same
-`test.use({ bundleId: 'com.mobilenext.playground' })` override as the
-WebView exercise, then:
+## Platform gotchas: system dialogs (iOS)
 
-- Opens the **GPS Location** row from the Home menu first (same kind of
-  native list as **Web View** above, so `getByText('GPS Location')` is more
-  reliable here than `getByTestId()` on the row itself).
-- Only then overrides the device's GPS location with
-  `device.setGeolocation({ latitude, longitude })`, new in
-  `mobilewright`/`@mobilewright/test` 0.0.58, the same idea as Playwright's
-  own `setGeolocation()`. Confirmed live: calling this before opening the
-  screen gets silently ignored on the Android emulator, the screen's own
-  location listener needs to already be active first.
-- Asserts the screen reflects the coordinates just set, find the real
-  locator with `mobilewright inspect`, then clears the override with
-  `device.setGeolocation(null)` and asserts it goes back to the emulator's
-  own default location (not a "no override" message).
+iOS shows two system dialogs on top of Gadget Shop: "Open in
+GadgetShopMobile?" after `device.openUrl()`, and "Save Password?" after
+logging in or registering. They belong to the operating system, not the app,
+and hide it until answered. `confirmOpenInApp(screen)` and
+`dismissSavePasswordPrompt(screen)` in `support/navigation.ts` answer them and
+do nothing on Android.
 
-## Platform gotchas: permission dialogs & keyboard occlusion
+Mobilewright also has a built-in dialog API, the same idea as Playwright's
+`page.on('dialog')`: `screen.on('dialog', d => d.accept())`,
+`screen.once(...)` and `screen.waitForEvent('dialog')`. Without a listener a
+dialog stays on screen (Playwright dismisses it for you). Dialogs are only
+noticed while an action or `expect()` reads the screen, and action sheets and
+bottom sheets don't count as dialogs. Whether these two iOS dialogs are
+picked up hasn't been checked yet, so the exercises keep using the helpers.
 
-Two cross-platform gotchas worth knowing about before writing specs against
-either app.
+## What this app does not have
 
-### OS permission dialogs
-
-On the playground app (`com.mobilenext.playground`),
-Android: its "Permissions and Alerts" screen lists several Android runtime
-permissions with per-permission request buttons, and two of them genuinely
-trigger a real OS-level dialog (only after the in-app button is tapped, not
-just from navigating to the screen):
-
-- **Location** — "REQUEST LOCATION PERMISSION" triggers the standard Android
-  location dialog, with a Precise/Approximate toggle and three buttons:
-  "While using the app" / "Only this time" / "Don't allow".
-- **Camera** — "REQUEST CAMERA PERMISSION" triggers "Allow Playground to take
-  pictures and record video?" (no Precise toggle), with the same three
-  buttons.
-
-A spec that drives either flow needs to handle this dialog explicitly (e.g.
-via the driver's OS-dialog/permission handling, or by pre-granting the
-permission at install time) — ignoring it blocks the test, since the dialog
-sits outside the app's own view hierarchy.
-
-On the same playground app, iOS Simulator: the
-"Permissions and Alerts" screen has **no Location section at all** — only
-Camera, unlike the Android build which has both. Tapping "Request Camera
-Permission" triggers a real OS-level dialog too, but with iOS's own wording
-and only two buttons (no Precise-location-style toggle, and no
-"only this time" option): `"Playground" would like to access the Camera.` /
-`Used to demonstrate permission request dialogs.` / `Don't Allow` / `Allow`.
-Dismissing it updates the app's own `camera_permission_status` label (to
-"Denied" in this case) — a real OS integration,
-not just an app-level mock. A spec targeting this screen on iOS needs
-platform-specific handling: there's one fewer permission to worry about, and
-the dialog's button layout differs from Android's.
-
-**Toolshop does not trigger any OS-level permission dialog**,
-on Android — it has no camera, location, notification, or storage features
-anywhere in its UI, so whatever permissions it declares in its manifest are
-never exercised by a live user flow. This gotcha is not applicable to
-Toolshop specs.
-
-### Software-keyboard occlusion
-
-This only bites on iOS, not Android: on this Android
-emulator, no full on-screen software keyboard ever renders while typing into
-a text field, so there is nothing for it to occlude — this gotcha does not
-apply on Android at all.
-
-On iOS it's field- and screen-dependent, not a blanket problem:
-
-- Register screen: the keyboard opens over the form, but the "Register"
-  button stays fully visible above it — a near miss, not an actual
-  occlusion.
-- Contact screen: after filling `message-input`, the keyboard genuinely
-  covers both `message-input` and `send-message-button`. Fixed reliably by
-  calling `scrollIntoViewIfNeeded()` on the target button before tapping it.
-
-This isn't a blanket "iOS always shows a
-keyboard" rule, though: on the playground app's own "Preferences"
-(SharedPref/Keychain) screen, iOS Simulator, tapping `username_field` or
-`password_field` focuses the field but **no on-screen software
-keyboard ever renders**. The fields still work — text delivered to the
-focused field lands correctly — there's just no visible keyboard on this
-screen to occlude anything. So on iOS the risk is real but
-screen-dependent: check each screen individually rather than assuming
-every text field triggers a keyboard worth scrolling around.
-
-## Note
-
-- `mobilecli webview list` can't be used to double-check the "no WebView"
-  claim above on the installed release builds — it needs a debuggable build
-  to attach (`does not have get-task-allow entitlement` on iOS, `is not
-  debuggable` on Android) — and `mobilewright inspect` has no non-interactive
-  mode either, just an interactive browser UI. Worked around above with a
-  second, debuggable app instead of a debug build of Toolshop itself.
-  `playground/playground.zip` installs and launches on
-  the iOS Simulator (`mobilecli apps install`/`apps launch`), landing on the
-  same six-item menu (Basic UI, Web View, SharedPref / Keychain, Continuous
-  Animation, Permissions and Alerts, GPS Location) as the Android build,
-  under the same `com.mobilenext.playground` bundle id.
+Gadget Shop has no location-aware screen and triggers no OS permission
+dialog, so there is no GPS mocking or permission handling to practise with it.

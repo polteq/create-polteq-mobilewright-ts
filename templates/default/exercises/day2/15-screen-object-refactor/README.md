@@ -23,11 +23,11 @@ and actions written directly in the test body. Refactor it bottom-up:
    *parameterized* locators, e.g. a hypothetical `row(name: string)` — those
    still need to stay as methods, since a field initializer can't take a
    call-time argument; none of this screen's locators are parameterized.)
-   Also add a `goto()` method that calls `openDrawer(this.screen)` (from
-   `support/navigation.ts` — the app's login session survives a restart, so
-   the drawer can't be assumed logged-out) then taps `nav-sign-in` — this
-   build doesn't support deep-linking to the Sign In screen, so reaching it
-   is itself part of the screen's responsibility.
+   Also add a `goto()` method that calls `openAccountAsGuest(this.screen)`
+   (from `support/navigation.ts` — the app's login session survives a
+   restart, so the Account tab can't be assumed logged-out) then taps
+   `account-guest-login-button`. Reaching the screen is itself part of the
+   screen's responsibility.
 2. Extract a shared `BaseScreen` under `starter/screens/base.screen.ts` that
    just holds the constructor-injected `screen` handle, so every future
    screen class can extend it instead of repeating that boilerplate.
@@ -35,9 +35,10 @@ and actions written directly in the test body. Refactor it bottom-up:
    `.goto()` then `.login(email, password)` instead of touching locators
    directly.
 
-This scaffold doesn't include a reference solution for this refactor — one
-thing you can't derive from the starter alone: the login button's real
-testID is `login-button` (not `login-submit`).
+This scaffold doesn't include a reference solution for this refactor. Two
+things you can't derive from the starter alone: the login button's testID
+is `login-submit-button`, and the locator the spec asserts on afterwards is
+`accountEmail` (`account-summary-email`).
 
 This sets up Module 16, where the fixture itself constructs the
 `LoginScreen` instead of a test doing `new LoginScreen(screen)` by hand.

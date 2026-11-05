@@ -16,12 +16,12 @@ instead of the raw screen. Reuse the `LoginScreen` class you built in
 
 Then write `starter/login-with-screen-object.spec.ts`: a test that requests
 `loginScreen`, calls `.goto()` and `.login(email, password)`, and asserts
-`.productsHeading` is visible, all through the Screen Object, zero raw
+`.accountEmail` has your email, all through the Screen Object, zero raw
 locators in the test itself.
 
 This scaffold doesn't include a reference solution for this exercise. Two
-things to get right, same as Module 12's fixture: `device.terminateApp()`/
-`launchApp()` both need the built-in `bundleId` fixture passed through
-explicitly, and the app's login session survives a restart, so
-`LoginScreen.goto()` reaches Sign In through the drawer rather than
-assuming a logged-out one.
+things to get right, same as Module 12's fixture:
+`device.terminateApp()`/`launchApp()` both need the built-in `bundleId`
+fixture passed through explicitly, and the app's login session survives a
+restart, so `LoginScreen.goto()` reaches Log in through the Account tab rather
+than assuming a logged-out one.

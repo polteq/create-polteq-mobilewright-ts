@@ -5,57 +5,55 @@
 Two files:
 
 1. **`locators.spec.ts`** — find the same two elements (the login button, the
-   Sign In screen title) two different ways: `getByTestId` vs.
+   Log in screen title) two different ways: `getByTestId` vs.
    `getByRole`/`getByText`. Discuss which one you'd keep long-term —
    `getByTestId` is the most resistant to copy/layout changes, per the
    locator priority order `getByTestId` > `getByRole` > `getByLabel` >
    `getByText` > `getByType`.
 
-2. **`register-via-ui.spec.ts`** — fill out Toolshop's own registration form
+   Note that `getByText('Log in')` matches twice: the screen title and the
+   button both read "Log in". A text locator that is not unique is exactly
+   why testIDs rank higher; use `.first()` to pick the title.
+
+2. **`register-via-ui.spec.ts`** — fill out the shop's own registration form
    through the UI instead of the API helper from Module 5: first name, last
    name, email, password. This exercises `fill()` across a multi-field form
-   and a `toHaveText()` assertion on the filled field.
+   and a `typedText()` assertion on the filled field.
 
-The mobile Register screen only exposes
-four fields (first name, last name, email, password) — `address`, `city`,
-`country` and `dob` are required by the Sprint 4 `POST /users/register` API
-but are not present in this app's UI at all, so they're out of scope for this
-exercise. Registering through the UI does **not** auto-login: it lands on a
-success screen (`getByTestId('success-message')`, "You are registered, tap
-here to sign in.") with a link back to Sign In, rather than the product
-catalog. The login button's testID doesn't follow the `-submit` naming pattern
-you might expect from other forms in this app — `mobilewright inspect`
-surfaces it directly, no need to guess.
+Registering through the UI does **not** log you in: the app moves on to the
+Log in screen with your email already filled in and a confirmation banner
+(`login-registered-banner-text`). The **Create account** button
+(`register-submit-button`) stays disabled until every field is filled and the
+password has at least 8 characters, hence `toBeEnabled()` right before the tap.
 
-Both files reach Sign In/Register via `openDrawer(screen)` (from
-`support/navigation.ts`) rather than tapping `drawer-button` directly — the
-app's login session survives a plain app restart, so the drawer can already
-be showing "Logout" if an earlier test left a session behind; `openDrawer`
-logs out first when needed.
+**Keyboard gotcha (iOS):** on a small iPhone the keyboard also covers the
+next form field, so a tap on it lands on a key and the text is typed into the
+field that still has focus. Press the keyboard's Return key
+(`screen.pressButton('ENTER')`) after each fill to move the focus on.
 
-One more thing worth calling out explicitly during the
-exercise: `toHaveValue()` (and `getValue()`) doesn't work for Android
-`EditText` fields on this driver — a `mobilecli dump ui` shows the typed
-text only under a `text` property, with no separate `value` property at all,
-and `getValue()` only ever reads `node.value`. Use `toHaveText()` (which
-falls back through `text` → `label` → `value`) to assert on a filled text
-input instead.
+**Keyboard gotcha (Android):** after typing, the on-screen keyboard can cover the submit
+button on the Android emulator, and a tap on it lands on the keyboard: nothing
+happens and no error shows. `swipePastKeyboard(screen)` (in
+`support/navigation.ts`) swipes up once so the button is reachable.
 
-`register-via-ui.spec.ts` also uses one more matcher: `toBeEnabled()` on the
-register button right before tapping it. Tapping "Register" does not navigate
-away from the form — the success message renders as an overlay on top of the
-still-visible, still-populated form, so there's no "the form is gone" fact to
-assert here; only that the success message/text appeared.
+Both files reach Log in/Register via `openAccountAsGuest(screen)` (from
+`support/navigation.ts`) rather than tapping the Account tab directly — the
+app's login session survives a plain app restart, so the Account tab can
+already be showing a profile if an earlier test left a session behind;
+`openAccountAsGuest` logs out first when needed.
 
-It also demonstrates one more way to find the first name field: `getByPlaceholder()`,
-alongside the `getByTestId`/`getByRole`/`getByText` trio from
-`locators.spec.ts` above. testId stays the priority pick either way —
-placeholder text is exactly the kind of copy that changes or gets translated
-out from under a test.
+One more thing worth calling out explicitly during the exercise: reading
+back what was typed differs per platform. On Android a `mobilecli dump ui`
+shows the typed text only under `text`, with no `value`, so `toHaveValue()`
+fails and `toHaveText()` works. On iOS the typed text is in `value`, while
+`text`/`label` hold the field's name ("First name"), so it is the other way
+around. `typedText(field)` in `support/navigation.ts` reads `value` first and
+falls back to the text, so the same assertion works on both.
 
-The first name field's placeholder is
-the example value shown inside the empty input, `'Jane'` — not `'First
-name'`, which is a separate label TextView displayed above the input. Worth
-calling out during the exercise: it's an easy mix-up between a field's label
-and its placeholder, and exactly the kind of thing `mobilewright inspect`
-catches immediately.
+It also demonstrates one more way to find the first name field:
+`getByLabel('First name')`. Every text field has a visible label above the
+input that doubles as its accessibility label. testId stays the priority pick
+either way — label text is exactly the kind of copy that changes or gets
+translated out from under a test.
+
+Use `mobilewright inspect` to see these ids and labels for yourself.

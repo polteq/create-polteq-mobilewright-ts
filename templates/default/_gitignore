@@ -16,3 +16,10 @@ node_modules/
 # Env
 .env
 .env.local
+
+# Mobilewright report
+/mobilewright-report/
+
+# Gadget Shop app, downloaded during the training
+/gadgetshop/*.apk
+/gadgetshop/*.zip

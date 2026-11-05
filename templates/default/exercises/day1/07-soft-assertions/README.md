@@ -2,14 +2,14 @@
 
 ## Exercise
 
-One file, two tests, both against the product catalog that's been on
-screen since Module 4's very first test, so no new locators are needed:
-just `getByText('Products')` and `getByTestId('product-title')`, both
-already used since Module 4 and Module 6.
+One file, two tests, both against the home screen's product catalog.
+Product cards carry the product's id in their testID, so no testID is shared
+between cards; the price text every card shows (`getByText(/^€\s?\d/)`) is the
+"one match per product" locator used here.
 
 1. **`collects every soft failure instead of stopping at the first one`**:
-   three checks with `expect.soft()` against the catalog: the "Products"
-   heading is visible, at least one product title is visible, and one
+   three checks with `expect.soft()` against the catalog: the home screen
+   is visible, at least one product price is visible, and one
    deliberately wrong check (there are zero products). A fourth, regular
    assertion follows the wrong one. Run it and read the report: all three
    checks show up as their own step, plus the regular assertion that

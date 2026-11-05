@@ -62,6 +62,8 @@ async function main() {
   if (targetArg) console.log(`  cd ${targetArg}`);
   console.log('  npm install');
   console.log('  npx mobilewright doctor');
+  console.log('  curl -L -o gadgetshop/gadgetshop.apk https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.apk');
+  console.log('  npx mobilecli apps install gadgetshop/gadgetshop.apk');
   console.log('  npx mobilewright test tests/example.spec.ts');
 }
 

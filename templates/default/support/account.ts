@@ -1,17 +1,15 @@
 // account.ts
+const API_BASE_URL = 'https://mobile.gadget-shop.polteq-testing.com';
+
 export async function registerFreshAccount() {
   const stamp = Date.now();
   const email = `attendee.${stamp}@example.com`;
   const password = 'Training123';
   const body = JSON.stringify({
-    first_name: 'Mobilewright',
-    last_name: 'Attendee',
     email,
     password,
-    address: '1 Test Street',
-    city: 'Amersfoort',
-    country: 'Netherlands',
-    dob: '1990-01-01',
+    firstName: 'Mobilewright',
+    lastName: 'Attendee',
   });
 
   // A full classroom hitting this one public demo API at once is a real
@@ -21,7 +19,7 @@ export async function registerFreshAccount() {
   for (let attempt = 1; attempt <= 2; attempt++) {
     let res: Response;
     try {
-      res = await fetch('https://api-v4.practicesoftwaretesting.com/users/register', {
+      res = await fetch(`${API_BASE_URL}/mobile/v1/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body,

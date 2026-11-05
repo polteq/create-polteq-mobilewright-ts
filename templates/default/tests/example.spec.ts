@@ -4,5 +4,5 @@
 import { test, expect } from '@mobilewright/test';
 
 test('app launches and shows home screen', async ({ screen, device }) => {
-  await expect(screen.getByText('Products')).toBeVisible();
+  await expect(screen.getByTestId('home-screen')).toBeVisible();
 });

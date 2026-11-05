@@ -5,7 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0.13] - 2026-11-05
+
+### Changed
+
+- The course now runs against the **Polteq Gadget Shop** app (`com.polteq.gadgetshop.mobile`) instead of Practice Software Testing / Toolshop. Every starter file, module README, `support/account.ts` (registers through the shop's mobile API), `support/navigation.ts` (`openAccountAsGuest`, `swipePastKeyboard`, `confirmOpenInApp`, `dismissSavePasswordPrompt`, `goBack`, `typedText`, `appWebView`), `tests/example.spec.ts` and `mobilewright.config.ts` (Android by default, `PLATFORM=ios` for the iOS Simulator, 90 s per-test timeout) follow the training repo.
+- The Gadget Shop app is not included in the package (it would add about 48 MB): attendees download it into `gadgetshop/` from https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.apk (iOS Simulator build: https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.zip). `gadgetshop/README.md` has the download and install commands, and the CLI's next steps include both.
+- `package.json.template` pins `mobilewright` and `@mobilewright/test` to `0.0.68` as devDependencies (and `@types/node` to `^24.19.2`), so `npm install` in a freshly scaffolded project installs them and every attendee runs the same release.
+- Module 9 (`exercises/day2/09-locators-refinement/`): `screen.gesture()` is no longer marked `test.fixme()`; the starter and README note that the mobilecli driver supports a single finger only.
+- Module 10: the WebView exercise now bridges into Gadget Shop's own Help page (`webview/starter/webview-help.spec.ts`), and the README covers the iOS system dialogs and Mobilewright's `screen.on('dialog')` API.
+- The setup guide (`mobilewright-training-setup-guide.docx`) refers to the Gadget Shop app and its download link.
+
+### Added
+
+- Module 9: a codegen exercise (`starter/codegen-recording.spec.ts`): record a short catalog flow with `npx mobilewright codegen` and clean the recording up into a proper test.
+
+### Removed
+
+- The playground app (`playground/`), the GPS location exercise (`exercises/day2/10-cross-platform-config/location/`, script `day2:10:location:starter`) and the playground-based `webview-login.spec.ts` starter. Gadget Shop has no location-aware screen; its own Help page replaces the playground WebView.
 
 ## [1.0.12] - 2026-09-23
 
@@ -101,6 +118,7 @@ No functional changes. Version bump only; package contents identical to 1.0.10.
 
 - Initial release of the Polteq Mobilewright (mobile end-to-end) TypeScript scaffold CLI.
 
+[1.0.13]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.13
 [1.0.12]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.12
 [1.0.11]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.11
 [1.0.10]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.10
