@@ -56,7 +56,7 @@ stable ways to get "one match per card" instead: the price text every card
 shows (`getByText(/^€\s?\d/)`), and the "Add to compare" button every card has
 (`getByRole('button', { name: /to compare/ })`). The filter exercise uses
 the second: its accessible name contains the product name, so
-`.filter({ hasText: 'Charger' })` narrows it to one product.
+`.filter({ hasText: 'USB-C Hub' })` narrows it to one product.
 
 Tapping a price opens the same product detail screen (`detail-screen`) as
 tapping the card itself. The catalog loads a few products at a time and
@@ -72,8 +72,8 @@ the same result, each in its own test:
   tap it. Return with `goBack(screen)` from `support/navigation.ts`. It wraps
   `screen.goBack()`, which only works on Android, and taps the native back
   button on iOS.
-- Alternatively, scroll with a raw gesture, `screen.swipe('up', { distance:
-  ... })`, instead of a locator-scoped scroll. Return with
+- Alternatively, scroll with a raw gesture, `screen.swipe('up', { startY,
+  distance })`, with both values taken from `device.screenSize()`, instead of a locator-scoped scroll. Return with
   `screen.pressButton('BACK')`, the Android hardware button specifically,
   instead of `goBack(screen)`. iOS has no hardware back button, so this test is
   skipped there (`test.skip(process.env.PLATFORM === 'ios', ...)`).

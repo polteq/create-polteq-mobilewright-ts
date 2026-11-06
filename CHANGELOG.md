@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.14] - 2026-11-06
+
+### Changed
+
+- Module 9 (`exercises/day2/09-locators-refinement/`): the catalog exercises now work on small screens. The filter exercise narrows to the "USB-C Hub" compare button, the `.nth()` exercise opens the second product, and the raw swipe takes `startY` and `distance` from `device.screenSize()`, because `swipe()` starts at the screen center, which is the header on a small phone.
+
 ## [1.0.13] - 2026-11-05
 
 ### Changed

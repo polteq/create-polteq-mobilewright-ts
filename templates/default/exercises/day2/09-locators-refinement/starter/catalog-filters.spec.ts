@@ -8,13 +8,13 @@ import { test, expect } from '@mobilewright/test';
 //     screen.getByRole('button', { name: /to compare/ })
 
 test.describe('locators part 2: refining and handling multiple matches', () => {
-  test('narrows the "Add to compare" buttons to the one for the charger', async ({ screen }) => {
-    // TODO: get all compare buttons, then .filter({ hasText: 'Charger' })
+  test('narrows the "Add to compare" buttons to the one for the USB-C Hub', async ({ screen }) => {
+    // TODO: get all compare buttons, then .filter({ hasText: 'USB-C Hub' })
     // TODO: assert the first match is visible and the count is exactly 1
   });
 
-  test('opens the third product in the list', async ({ screen }) => {
-    // TODO: get all price locators and tap the third one with .nth(2)
+  test('opens the second product in the list', async ({ screen }) => {
+    // TODO: get all price locators and tap the second one with .nth(1)
     // TODO: assert the product detail screen opened (getByTestId('detail-screen'))
   });
 
@@ -39,9 +39,10 @@ test.describe('locators part 2: refining and handling multiple matches', () => {
     // ('home-screen' visible again)
   });
 
-  test('swipes the catalog and presses the hardware back button', async ({ screen }) => {
-    // TODO: use screen.swipe('up', { distance: ... }) to scroll the whole
-    // screen instead of scrollIntoViewIfNeeded() on a single locator
+  test('swipes the catalog and presses the hardware back button', async ({ screen, device }) => {
+    // TODO: use screen.swipe('up', { startY, distance }) to scroll the whole
+    // screen instead of scrollIntoViewIfNeeded() on a single locator. Take
+    // startY (about 80% of the height) and distance from device.screenSize().
 
     // TODO: get the last price locator, assert it's visible, tap it
 
