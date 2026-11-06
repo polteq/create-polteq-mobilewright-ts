@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.15] - 2026-11-06
+
+### Changed
+
+- The setup guide (`mobilewright-training-setup-guide.docx`) is now the current SharePoint version: it no longer names specific tool versions or download links. It states the minimums (Node.js 24 or newer, Android API 34 or newer), installs the current LTS of Node.js through nvm or nvm-windows, points to the nvm README for the install command, and says the Gadget Shop app is downloaded in class. Git is only needed for the setup checker, and the optional iOS part covers turning off Suggest Strong Passwords and installing the mobilecli agent in class.
+
 ## [1.0.14] - 2026-11-06
 
 ### Changed
@@ -124,6 +130,8 @@ No functional changes. Version bump only; package contents identical to 1.0.10.
 
 - Initial release of the Polteq Mobilewright (mobile end-to-end) TypeScript scaffold CLI.
 
+[1.0.15]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.15
+[1.0.14]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.14
 [1.0.13]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.13
 [1.0.12]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.12
 [1.0.11]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.11
