@@ -16,7 +16,7 @@ import { test, expect } from '@mobilewright/test';
 //   - a broad locator that matches several elements should be narrowed
 //     (filter({ hasText }), or a text that only one element has) instead of
 //     relying on a position
-//   - on Android, swap a recorded toHaveValue() for toHaveText()
+//   - on a text field, swap a recorded toHaveText() for toHaveValue()
 //   - end with an assertion that proves you're back on the catalog
 
 test('test', async ({ device, screen }) => {

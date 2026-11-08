@@ -16,13 +16,13 @@ test('registers a new account by filling in the form through the UI', async ({ s
   // fills to move the focus on instead of tapping the next field
 
   // TODO: assert the email field holds the value you typed with
-  // typedText(field) from support/navigation: toHaveText() only works on
-  // Android and toHaveValue() only on iOS, typedText() works on both)
+  // toHaveValue(): it works on both platforms, while toHaveText() reads the
+  // field's name on iOS
 
   // TODO: find the first name field again, this time via
   // screen.getByLabel('First name') — the visible label above the input is
   // also its accessibility label — and assert it still holds 'Mobilewright'
-  // via typedText
+  // with toHaveValue()
 
   // TODO: call swipePastKeyboard(screen) (from support/navigation) so the
   // keyboard no longer covers the submit button

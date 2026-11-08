@@ -104,8 +104,10 @@ is a first draft, not a finished test:
 - A broad locator that matches several elements should be narrowed with
   `filter({ hasText })` or a text only one element has, so the test survives
   a change in product order.
-- The "assert value" mode records `toHaveValue()`. On Android that matcher
-  doesn't populate for text fields (Module 6), use `toHaveText()` instead.
+- The "assert text" mode records `toHaveText()`. On a filled text field that
+  reads the field's name on iOS (Module 6), so a recording made on Android
+  fails there: use the "assert value" mode, which records `toHaveValue()`
+  and works on both platforms.
 - A recording stops after your last action. End with an assertion that
   proves the test is back on the catalog (`home-screen`).
 

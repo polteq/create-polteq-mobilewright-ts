@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.16] - 2026-11-08
+
+### Changed
+
+- Reading back typed text: Module 6 (README and the `register-via-ui.spec.ts` starter), the project README and the `typedText()` comment in `support/navigation.ts` now say to check a filled text field with `toHaveValue()`. With mobilecli 1.0.22 (installed by `mobilewright` 0.0.68) Android has the typed text in both `text` and `value`, so `toHaveValue()` works on both platforms; `toHaveText()` still reads the field's name on iOS. `typedText()` stays available.
+- Module 9 (`codegen-recording.spec.ts` starter and README): the cleanup hint now swaps a recorded `toHaveText()` on a text field for `toHaveValue()`, instead of the other way round.
+
 ## [1.0.15] - 2026-11-06
 
 ### Changed
@@ -130,6 +137,7 @@ No functional changes. Version bump only; package contents identical to 1.0.10.
 
 - Initial release of the Polteq Mobilewright (mobile end-to-end) TypeScript scaffold CLI.
 
+[1.0.16]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.16
 [1.0.15]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.15
 [1.0.14]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.14
 [1.0.13]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.13

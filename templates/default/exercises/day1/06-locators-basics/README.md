@@ -18,7 +18,7 @@ Two files:
 2. **`register-via-ui.spec.ts`** — fill out the shop's own registration form
    through the UI instead of the API helper from Module 5: first name, last
    name, email, password. This exercises `fill()` across a multi-field form
-   and a `typedText()` assertion on the filled field.
+   and a `toHaveValue()` assertion on the filled field.
 
 Registering through the UI does **not** log you in: the app moves on to the
 Log in screen with your email already filled in and a confirmation banner
@@ -42,13 +42,13 @@ app's login session survives a plain app restart, so the Account tab can
 already be showing a profile if an earlier test left a session behind;
 `openAccountAsGuest` logs out first when needed.
 
-One more thing worth calling out explicitly during the exercise: reading
-back what was typed differs per platform. On Android a `mobilecli dump ui`
-shows the typed text only under `text`, with no `value`, so `toHaveValue()`
-fails and `toHaveText()` works. On iOS the typed text is in `value`, while
-`text`/`label` hold the field's name ("First name"), so it is the other way
-around. `typedText(field)` in `support/navigation.ts` reads `value` first and
-falls back to the text, so the same assertion works on both.
+One more thing worth calling out explicitly during the exercise: check what
+was typed with `toHaveValue()`, not `toHaveText()`. On iOS a text field's
+`text`/`label` hold the field's name ("First name") and the typed text is
+only in `value`, so `toHaveText()` reads the name. On Android the typed text
+is in both `text` and `value`. `toHaveValue()` therefore works on both
+platforms, and like every `expect()` it keeps retrying until the field holds
+the expected text.
 
 It also demonstrates one more way to find the first name field:
 `getByLabel('First name')`. Every text field has a visible label above the

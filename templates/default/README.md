@@ -62,8 +62,10 @@ fails with `Command failed: ... agent status`; `npx mobilecli agent status
 Things that differ on iOS, and are handled by the helpers in
 `support/navigation.ts`: the "Open in GadgetShopMobile?" dialog after a deep
 link (`confirmOpenInApp`), the "Save Password?" sheet after login and register
-(`dismissSavePasswordPrompt`), the native back button (`goBack`), reading what
-was typed into a field (`typedText`) and finding the WebView (`appWebView`).
+(`dismissSavePasswordPrompt`), the native back button (`goBack`) and finding
+the WebView (`appWebView`). Check what was typed into a field with
+`toHaveValue()`, which works on both platforms: on iOS `toHaveText()` reads
+the field's name instead.
 Turn off **Settings > Passwords > Password Options > Suggest Strong Passwords**
 on the simulator, and reset leftover login sessions with
 `xcrun simctl keychain booted reset`. The one Android-only exercise is the

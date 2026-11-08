@@ -54,11 +54,13 @@ export async function dismissSavePasswordPrompt(screen: Screen): Promise<void> {
   }
 }
 
-// What the user typed into a text field, on both platforms. The accessibility
-// tree stores it differently: Android only has a `text` property (and no
-// `value`), iOS keeps it in `value` while `text`/`label` hold the field's
-// name ("First name"). So toHaveText() works on Android only and toHaveValue()
-// on iOS only; this reads `value` first and falls back to the text.
+// What the user typed into a text field, on both platforms. iOS keeps it in
+// `value` while `text`/`label` hold the field's name ("First name"); Android
+// has it in both `text` and `value`. So toHaveValue() works on both platforms
+// and toHaveText() only on Android. Prefer
+// `await expect(field).toHaveValue(...)`, which waits: this is a plain read
+// that doesn't. It falls back to the text for a mobilecli older than 1.0.22,
+// which leaves `value` empty on Android.
 export async function typedText(field: Locator): Promise<string> {
   return (await field.getValue()) || (await field.getText());
 }
