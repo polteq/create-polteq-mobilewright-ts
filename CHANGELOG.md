@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.17] - 2026-11-12
+
+### Changed
+
+- The Gadget Shop app keeps the name the website gives it: `gadgetshop/polteq-gadget-shop.apk` (iOS Simulator build: `polteq-gadget-shop.zip`) instead of `gadgetshop.apk`. A download with the browser now matches the install command. `gadgetshop/README.md`, the project README, the Module 3 setup README, this README and the CLI's next steps download with `curl -LO` from inside `gadgetshop/` and install `gadgetshop/polteq-gadget-shop.apk`. `gadgetshop/README.md` also says that saving the file there from the browser works.
+
 ## [1.0.16] - 2026-11-08
 
 ### Changed
@@ -137,6 +143,7 @@ No functional changes. Version bump only; package contents identical to 1.0.10.
 
 - Initial release of the Polteq Mobilewright (mobile end-to-end) TypeScript scaffold CLI.
 
+[1.0.17]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.17
 [1.0.16]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.16
 [1.0.15]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.15
 [1.0.14]: https://github.com/polteq/create-polteq-mobilewright-ts/releases/tag/v1.0.14

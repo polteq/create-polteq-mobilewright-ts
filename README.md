@@ -23,8 +23,8 @@ npm init polteq-mobilewright-ts@latest my-project
 cd my-project
 npm install
 npx mobilewright doctor
-curl -L -o gadgetshop/gadgetshop.apk https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.apk
-npx mobilecli apps install gadgetshop/gadgetshop.apk
+cd gadgetshop && curl -LO https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.apk && cd ..
+npx mobilecli apps install gadgetshop/polteq-gadget-shop.apk
 npx mobilewright test tests/example.spec.ts
 ```
 

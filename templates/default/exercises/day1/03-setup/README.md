@@ -11,9 +11,9 @@ is left as-is.
 2. Confirm at least one device is available: `npx mobilecli devices`.
 3. Download the Gadget Shop app into `gadgetshop/` (see `gadgetshop/README.md`
    for the iOS Simulator build):
-   `curl -L -o gadgetshop/gadgetshop.apk https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.apk`
-   and install it on that device/emulator:
-   `npx mobilecli apps install gadgetshop/gadgetshop.apk`
+   `cd gadgetshop && curl -LO https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.apk && cd ..`
+   (or save `polteq-gadget-shop.apk` there from your browser) and install it on that device/emulator:
+   `npx mobilecli apps install gadgetshop/polteq-gadget-shop.apk`
    (bundle id: `com.polteq.gadgetshop.mobile`). This is a debuggable build, so
    the first start can take 20+ seconds: open the app once and wait for the
    home screen before running tests.

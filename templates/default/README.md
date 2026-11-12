@@ -15,7 +15,7 @@ pages are the shop's website shown in a WebView, which the WebView exercise uses
 - Node.js 24+
 - Android SDK with an emulator (AVD) or a connected physical device, with
   `adb` on your `PATH`
-- The Gadget Shop app for your platform: `gadgetshop.apk` (Android) or `gadgetshop.zip` (iOS Simulator). Download it into `gadgetshop/` as described in [`gadgetshop/README.md`](gadgetshop/README.md): the APK from https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.apk, the iOS Simulator build from https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.zip.
+- The Gadget Shop app for your platform: `polteq-gadget-shop.apk` (Android) or `polteq-gadget-shop.zip` (iOS Simulator). Download it into `gadgetshop/` as described in [`gadgetshop/README.md`](gadgetshop/README.md): the APK from https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.apk, the iOS Simulator build from https://gadget-shop.polteq-testing.com/downloads/polteq-gadget-shop.zip.
   The APK is a debuggable course build (needed for WebView bridging and rotation). Its first start after install or terminate can take 20+ seconds, so the exercises use long timeouts on the first assertion.
 
 ## Setup
@@ -24,7 +24,7 @@ pages are the shop's website shown in a WebView, which the WebView exercise uses
 npm install
 npx mobilewright doctor          # checks Node, Android SDK, emulator/device
 npx mobilecli devices            # confirms a device is available
-npx mobilecli apps install gadgetshop/gadgetshop.apk
+npx mobilecli apps install gadgetshop/polteq-gadget-shop.apk
 npx mobilewright test tests/example.spec.ts
 npx mobilewright show-report
 ```
@@ -46,10 +46,10 @@ Full step-by-step instructions live in
 
 Everything runs on Android by default. For iOS, boot **one** simulator
 (an iPhone 17 Pro on iOS 26.5 is what the exercises were verified on), install
-`gadgetshop/gadgetshop.zip` and set `PLATFORM=ios`:
+`gadgetshop/polteq-gadget-shop.zip` and set `PLATFORM=ios`:
 
 ```bash
-unzip gadgetshop/gadgetshop.zip -d /tmp/gadgetshop-ios
+unzip gadgetshop/polteq-gadget-shop.zip -d /tmp/gadgetshop-ios
 xcrun simctl install booted /tmp/gadgetshop-ios/GadgetShopMobile.app
 npx mobilecli agent install --device <simulator id>   # once per simulator
 PLATFORM=ios npx mobilewright test tests/example.spec.ts
